@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const db = require('../database-mysql');
+const data = require('../database-mysql');
 
 const app = express();
 const port = 3004;
