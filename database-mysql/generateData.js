@@ -5,7 +5,7 @@ const generateUSlocation = function () {
   let city = faker.address.city();
   let country = 'United States of America';
   return {country, state, city};
-}
+};
 
 const generateLocations = function () {
   let places = [];
@@ -27,7 +27,7 @@ const generateLocations = function () {
 
 const randomNumber = function(max, min = 0) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 
 const generateStartAndEnd = function (daysWeeksMonths) {
   let start;
@@ -44,7 +44,7 @@ const generateStartAndEnd = function (daysWeeksMonths) {
     end = 2;
   }
   return {start, end};
-}
+};
 
 const generateShipping = function () {
   let types = ['US', 'international', 'digital', 'US', 'international'];
@@ -67,9 +67,62 @@ const generateShipping = function () {
   }
 
   return shippingOptions;
+};
+
+
+/*
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title             | char(180)    | NO   |     | NULL    |                |
+| price             | float(7,2)   | NO   |     | NULL    |                |
+| shipping_id       | int(11)      | NO   | MUL | NULL    |                |
+| materials         | char(180)    | NO   |     | NULL    |                |
+| description       | text         | NO   |     | NULL    |                |
+| location_id       | int(11)      | NO   | MUL | NULL    |                |
+| policies          | text         | NO   |     | NULL    |                |
+| return_synopsis   | char(100)    | NO   |     | NULL    |                |
+| dimensions        | varchar(100) | YES  |     | NULL    |                |
+| max_order_qty     | int(11)      | YES  |     | NULL    |                |
+| returns_condttion | text         | YES  |     | NULL    |                |
+| inventory_count   | int(11)      | YES  |     | NULL    |                |
+| in_other_carts    | int(11)      | YES  |     | NULL    |                |
+| gift_wrap         | tinyint(1)   | YES  |     | NULL    |                |
+| faqs              | tinyint(1)   | YES  |     | NULL    |                |
+| bestseller        | tinyint(1)   | YES  |     | NULL    |                |
+| personalizable    | tinyint(1)   | YES  |     | NULL    |                |
+| handmade          | tinyint(1)   | YES  |     | NULL    |                |
+| vintage           | tinyint(1)   | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+
+*/
+
+const generateTitle = function () {
+  let mainTitle = faker.commerce.productName();
+  if (randomNumber(1)) {
+    let additional = faker.commerce.productName();
+    mainTitle += ` with ${additional}`;
+  }
+  return mainTitle;
+};
+
+// generatePrice
+// (use randomNumber)
+// generateMaterials
+// generateDescription
+// generatePolicies
+// generateReturnSynopsis
+// generateDimensions
+// generateReturnsCondition
+// generateFlags
+
+const generateItems = function () {
+
 }
 
 // console.log(generateShipping());
 // console.log(generateLocations());
+console.log(generateTitle());
 
 exports.populateDb;
