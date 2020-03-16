@@ -1,5 +1,5 @@
 {
-  "name": "FEC Item Details Mockup of etsy.com",
+  "name": "fec_item_details_mockup_of_etsy",
   "version": "1.0.0",
   "description": "A service that displays fake item details, designed to look like etsy.com's item details",
   "author": "Ashby Gunter",
@@ -7,7 +7,9 @@
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "buildData": "node ./database-mysql/createDbAndTables.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "mysql": "^2.18.1",
@@ -20,6 +22,8 @@
     "@babel/preset-react": "^7.8.3",
     "css-loader": "^3.4.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "^4.1.0",
+    "faker-cli": "^1.4.1",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
     "style-loader": "^1.1.3",
