@@ -1,5 +1,3 @@
-const mysql = require('mysql');
-// const populate = require('./generateData.js');
 
 // ***********  db connection  ***********
 const connectionOptions = {
@@ -8,7 +6,6 @@ const connectionOptions = {
 }
 
 var dbConnection = mysql.createConnection(connectionOptions);
-
 dbConnection.connect((err) => {
   if (err) {
     console.error('db connection error:', err);
@@ -18,4 +15,4 @@ dbConnection.connect((err) => {
 });
 
 
-exports.dbConnection;
+exports.dbConnection = dbConnection;

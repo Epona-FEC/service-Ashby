@@ -10,7 +10,7 @@ const generateUSlocation = function () {
   let state = faker.address.stateAbbr();
   let city = faker.address.city();
   let country = 'United States of America';
-  return {country, state, city};
+  return [country, state, city];
 };
 
 const generateAllLocations = function () {
@@ -21,7 +21,7 @@ const generateAllLocations = function () {
       places.push(generateUSlocation());
     } else {
       let country = faker.address.country();
-      places.push({country});
+      places.push([country, null, null]);
     }
   }
 
@@ -63,7 +63,7 @@ const generateAllShipping = function () {
     let timeframe = timeframes[randomNumber(4)];
     let startAndEnd = generateStartAndEnd(timeframe);
     timeframe = `${startAndEnd.start} - ${startAndEnd.end} ${timeframe}`
-    let shipping = {type, free, timeframe};
+    let shipping = [type, free, timeframe];
     shippingOptions.push(shipping);
   }
 
@@ -137,6 +137,8 @@ const generateDimensions = function (itemSoFar) {
   }
   if (dimensions.length > 0) {
     updatedItem.dimensions = dimensions;
+  } else {
+    updatedItem.dimensions = null;
   }
   return updatedItem;
 };
@@ -145,6 +147,8 @@ const generateMaxOrderQty = function (itemSoFar) {
   let updatedItem = {...itemSoFar};
   if (!randomNumber(3)) {
     updatedItem.max_order_qty = randomNumber(25, 3);
+  } else {
+    updatedItem.max_order_qty = null;
   }
   return updatedItem;
 };
@@ -153,6 +157,8 @@ const generateReturnsCondition = function (itemSoFar) {
   let updatedItem = {...itemSoFar};
   if (!randomNumber(2)) {
     updatedItem.returns_condition = faker.lorem.paragraphs();
+  } else {
+    updatedItem.returns_condition = null;
   }
   return updatedItem;
 };
@@ -175,6 +181,8 @@ const generateInOtherCarts = function (itemSoFar) {
       max = updatedItem.inventory_count;
     }
     updatedItem.in_other_carts = randomNumber(max, 1);
+  } else {
+    updatedItem.in_other_carts = null;
   }
   return updatedItem;
 };
@@ -189,7 +197,7 @@ const generateDescriptorFlags = function (itemSoFar) {
   updatedItem.handmade = 0;
   updatedItem.vintage = 0;
   if (!randomNumber(2)) {
-    updatedItem.giftWrap = 1;
+    updatedItem.gift_wrap = 1;
   }
   if (!randomNumber(2)) {
     updatedItem.faqs = 1;
@@ -218,7 +226,7 @@ const generateItemRequiredFields = function () {
   let description = generateDescription();
   let location_id = randomNumber(100, 1);
   let policies = generatePolicies();
-  let returnSynopsis = generateReturnSynopsis();
+  let return_synopsis = generateReturnSynopsis();
   return {title, price, shipping_id, materials, description, location_id, policies, returnSynopsis};
 };
 
@@ -351,6 +359,9 @@ const generateAllOptions = function () {
 
   for (let i = 0; i < 100; i++) {
     let options = generateOptionsForItem();
+    if (options !== null) {
+      options.item_id = i + 1;
+    }
     results.push(options);
   }
 
@@ -386,13 +397,16 @@ const generateAllMarkdowns = function () {
 
   for (let i = 0; i < 100; i++) {
     let markdown = generateOneMarkdown();
+    if (markdown !== null) {
+      markdown.item_id = i + 1;
+    }
     results.push(markdown);
   }
 
   return results;
 }
 
-// // generateAllLocations test:
+// generateAllLocations test:
 // let locations = generateAllLocations();
 // console.log(locations);
 // console.log(locations.length);
@@ -417,4 +431,9 @@ const generateAllMarkdowns = function () {
 // console.log(markdowns);
 // console.log(markdowns.length);
 
-exports.populateDb;
+// exports.populateDb;
+exports.generateAllLocations = generateAllLocations;
+exports.generateAllShipping = generateAllShipping;
+exports.generateAllItems = generateAllItems;
+exports.generateAllOptions = generateAllOptions;
+exports.generateAllMarkdowns = generateAllMarkdowns;

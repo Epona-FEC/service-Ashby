@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-// const populate = require('./generateData.js');
+// const insertData = require('./insertData.js');
 
 // ***********  db connection  ***********
 const connectionOptions = {
