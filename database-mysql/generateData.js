@@ -275,17 +275,40 @@ orientation
 --- horizontal, vertical
 */
 
+const getRandomDimensionUnit = function () {
+  let dimensions = ['centimeter', 'inch', 'foot', 'meter'];
+  let index = randomNumber(3);
+  return dimensions[index];
+}
+
+const pluralizeUnit = function (dimension) {
+  if (dimension === 'inch') {
+    return 'inches';
+  } else if (dimension === 'foot') {
+    return 'feet';
+  }
+  return dimension + 's';
+}
+
 const makeSizeOption = function () {
   let sizeList = [];
   if (!randomNumber(3)) {
     sizeList = ['small', 'medium', 'large'];
   } else {
     let numSizes = randomNumber(5, 2);
+    let unitOne = getRandomDimensionUnit();
+    let unitTwo = unitOne;
     let dimensionOne = randomNumber(4, 1);
+    if (dimensionOne > 1) {
+      unitOne = pluralizeUnit(unitOne);
+    }
+    if (dimensionTwo > 1) {
+      unitTwo = pluralizeUnit(unitTwo);
+    }
     let dimensionTwo = randomNumber(4, 1);
     for (let i = 0; i < numSizes; i++) {
       let step = i * 3;
-      sizeList.push(`${dimensionOne + step} x ${dimensionTwo +  step}`);
+      sizeList.push(`${dimensionOne + step} ${unitOne} x ${dimensionTwo +  step} ${unitTwo}`);
     }
   }
   return [...sizeList].join(',' );
@@ -301,28 +324,63 @@ const makeColorOption = function () {
 };
 
 const makeHeightOption = function () {
-
+  let heights = [];
+  let numHeights = randomNumber(6, 3);
+  // get a unit type
+  let unit = getRandomDimensionUnit();
+  // get plural of it
+  let units = pluralizeUnit(unit);
+  heights.push(`1 ${unit}`);
+  // iterate numHeights
+  for (let i = 2; i < numHeights; i++) {
+    // construct array
+    heights.push(`${i} ${units}`);
+  }
+  // return string from array
+  return [...heights].join(',');
 };
 
 const makeOrientationOption = function () {
-
+  // define hardcoded options
+  // return string of options
 };
 
-const generateOneOption = function () {
+const generateOneOption = function (type) {
+  // empty string to store result
+  // if type is size
+    // call makeSizeOption
+  // else if type is color
+    // call makeColorOption
+  // else if type is height
+    // call makeHeightOption
+  // else if type is orientation
+    // call makeOrientationOption
 
+  // return result
 };
 
 const generateOptionsForItem = function () {
-
+  // random change to have an option - 1 in 2
+    // random number of options 1-2
+    // make sure they're different options
+    // call each
+  // return an object with option type: string of options
 };
 
 const generateOptiosForAllItems = function () {
+  // results array, empty to start
 
+  // iterate 1 to 100
+    // call generateOptionsForItem
+    // push object into results array
+
+  // return results
 };
 
 
 //  ******************  generates sales data  ******************
 
-console.log(makeColorOption());
+
+console.log(makeHeightOption());
 
 exports.populateDb;
