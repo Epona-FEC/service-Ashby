@@ -99,15 +99,46 @@ const generateShipping = function () {
 */
 
 const generateTitle = function () {
-  let mainTitle = faker.commerce.productName();
+  let pieces = [];
+  let additional = '';
+
   if (randomNumber(1)) {
-    let additional = faker.commerce.productName();
-    mainTitle += ` with ${additional}`;
+    pieces.push(faker.commerce.color());
   }
-  return mainTitle;
+  if (randomNumber(1)) {
+    pieces.push(faker.commerce.productAdjective());
+  }
+  pieces.push(faker.commerce.productName());
+  if (randomNumber(1)) {
+    additional = ` with ${faker.commerce.productName()}`;
+  }
+
+  let title = [...pieces].join(' ');
+  title = `${title}${additional}`
+
+  return title;
 };
 
-// generatePrice
+const generatePrice = function () {
+  let price = faker.commerce.price();
+  return price;
+};
+
+const generateMaterials = function () {
+  let numMaterials = randomNumber(3);
+  let materials = new Set;
+  for (let i = 1; i <= numMaterials; i++) {
+    let newMat = faker.commerce.productMaterial();
+    materials.add(newMat);
+  }
+
+  if (materials.length === 0) {
+    return null;
+  } else {
+    return [...materials].join(', ');
+  }
+}
+
 // (use randomNumber)
 // generateMaterials
 // generateDescription
@@ -118,11 +149,18 @@ const generateTitle = function () {
 // generateFlags
 
 const generateItems = function () {
-
+  let title = generateTitle();
+  let price = generatePrice();
+  let shipping_id = randomNumber(100, 1);
+  let materials = generateMaterials();
+  return {title, price, shipping_id, materials};
 }
 
 // console.log(generateShipping());
 // console.log(generateLocations());
-console.log(generateTitle());
+console.log(generateItems());
+
+// generateItems();
+
 
 exports.populateDb;
