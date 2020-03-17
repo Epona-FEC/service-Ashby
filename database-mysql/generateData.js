@@ -13,19 +13,16 @@ const generateUSlocation = function () {
   return {country, state, city};
 };
 
-const generateLocations = function () {
+const generateAllLocations = function () {
   let places = [];
 
-  for (var i = 1; i <= 50; i++) {
-    let country = faker.address.country();
-    if (country === 'United States of America') {
+  for (let i = 0; i < 100; i++) {
+    if (faker.random.boolean()) {
       places.push(generateUSlocation());
     } else {
+      let country = faker.address.country();
       places.push({country});
     }
-  }
-  for (; i <= 100; i++) {
-    places.push(generateUSlocation());
   }
 
   return places;
@@ -50,7 +47,7 @@ const generateStartAndEnd = function (daysWeeksMonths) {
   return {start, end};
 };
 
-const generateShipping = function () {
+const generateAllShipping = function () {
   let types = ['US', 'international', 'digital', 'US', 'international'];
   let timeframes = ['days', 'weeks', 'days', 'months', 'days'];
   let shippingOptions = [];
@@ -243,7 +240,7 @@ const generateItem = function () {
   return item;
 };
 
-const generateItems = function () {
+const generateAllItems = function () {
   let items = [];
   for (let i = 1; i <= 100; i++) {
     items.push(generateItem());
@@ -349,7 +346,7 @@ const generateOptionsForItem = function () {
   return results;
 };
 
-const generateOptiosForAllItems = function () {
+const generateAllOptions = function () {
   let results = [];
 
   for (let i = 0; i < 100; i++) {
@@ -394,5 +391,30 @@ const generateAllMarkdowns = function () {
 
   return results;
 }
+
+// // generateAllLocations test:
+// let locations = generateAllLocations();
+// console.log(locations);
+// console.log(locations.length);
+
+// // generateAllShipping test:
+// let shipping = generateAllShipping();
+// console.log(shipping);
+// console.log(shipping.length);
+
+// // generateAllItems test:
+// let items = generateAllItems();
+// console.log(items);
+// console.log(items.length);
+
+// // generateAllOptions test:
+// let options = generateAllOptions();
+// console.log(options);
+// console.log(options.length);
+
+// // generateAllMarkdowns test:
+// let markdowns = generateAllMarkdowns();
+// console.log(markdowns);
+// console.log(markdowns.length);
 
 exports.populateDb;
