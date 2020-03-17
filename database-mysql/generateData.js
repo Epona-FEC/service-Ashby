@@ -341,8 +341,7 @@ const makeHeightOption = function () {
 };
 
 const makeOrientationOption = function () {
-  // define hardcoded options
-  // return string of options
+  return 'horizontal,vertical';
 };
 
 const generateOneOption = function (type) {
