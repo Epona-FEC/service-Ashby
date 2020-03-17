@@ -365,7 +365,7 @@ const generateOptionsForItem = function () {
   if (!faker.random.boolean()) {
     return null;
   }
-  numOptions = randomNumber(2, 1);
+  numOptions = randomNumber(3, 1);
   for (let i = 1; i <= numOptions; i++) {
     let optionIndex = randomNumber(optionTypes.length - 1);
     let optionValue = generateOneOption(optionTypes[optionIndex]);
@@ -376,19 +376,22 @@ const generateOptionsForItem = function () {
 };
 
 const generateOptiosForAllItems = function () {
-  // results array, empty to start
+  let results = [];
 
-  // iterate 1 to 100
-    // call generateOptionsForItem
-    // push object into results array
+  for (let i = 0; i < 100; i++) {
+    let options = generateOptionsForItem();
+    results.push(options);
+  }
 
-  // return results
+  return results;
 };
 
 
 //  ******************  generates sales data  ******************
 
 
-console.log(generateOptionsForItem());
+let allOptions = generateOptiosForAllItems();
+console.log(allOptions);
+console.log(allOptions.length);
 
 exports.populateDb;
