@@ -1,5 +1,11 @@
 const faker = require('faker');
 
+//  ******************  helper  ******************
+const randomNumber = function(max, min = 0) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+//  ******************  generates location data  ******************
 const generateUSlocation = function () {
   let state = faker.address.stateAbbr();
   let city = faker.address.city();
@@ -25,10 +31,8 @@ const generateLocations = function () {
   return places;
 };
 
-const randomNumber = function(max, min = 0) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
 
+//  ******************  generates shipping data  ******************
 const generateStartAndEnd = function (daysWeeksMonths) {
   let start;
   let end;
@@ -69,36 +73,9 @@ const generateShipping = function () {
   return shippingOptions;
 };
 
+//  ******************  generates item data  ******************
 
-/*
-+-------------------+--------------+------+-----+---------+----------------+
-| Field             | Type         | Null | Key | Default | Extra          |
-+-------------------+--------------+------+-----+---------+----------------+
-| `id                | int(11)      | NO   | PRI | NULL    | auto_increment |
-| `title             | char(180)    | NO   |     | NULL    |                |
-| `price             | float(7,2)   | NO   |     | NULL    |                |
-| `shipping_id       | int(11)      | NO   | MUL | NULL    |                |
-| `materials         | char(180)    | NO   |     | NULL    |                |
-| `description       | text         | NO   |     | NULL    |                |
-| `location_id       | int(11)      | NO   | MUL | NULL    |                |
-| `policies          | text         | NO   |     | NULL    |                |
-| `return_synopsis   | char(100)    | NO   |     | NULL    |                |
-| `dimensions        | varchar(100) | YES  |     | NULL    |                |
-| max_order_qty     | int(11)      | YES  |     | NULL    |                |
-| returns_condttion | text         | YES  |     | NULL    |                |
-| inventory_count   | int(11)      | YES  |     | NULL    |                |
-| in_other_carts    | int(11)      | YES  |     | NULL    |                |
-| gift_wrap         | tinyint(1)   | YES  |     | NULL    |                |
-| faqs              | tinyint(1)   | YES  |     | NULL    |                |
-| bestseller        | tinyint(1)   | YES  |     | NULL    |                |
-| personalizable    | tinyint(1)   | YES  |     | NULL    |                |
-| handmade          | tinyint(1)   | YES  |     | NULL    |                |
-| vintage           | tinyint(1)   | YES  |     | NULL    |                |
-+-------------------+--------------+------+-----+---------+----------------+
-
-*/
-
-// the first several are all required fields - not null
+// the first several are required fields - cannot be null
 const generateTitle = function () {
   let pieces = [];
   let additional = '';
@@ -146,7 +123,7 @@ const generatePolicies = function () {
 
 const generateReturnSynopsis = function () {
   return faker.lorem.lines();
-}
+};
 
 // the rest of these fields CAN be null
 const generateDimensions = function (itemSoFar) {
@@ -165,12 +142,77 @@ const generateDimensions = function (itemSoFar) {
     updatedItem.dimensions = dimensions;
   }
   return updatedItem;
-}
+};
 
+// max_order_qty
+const generateMaxOrderQty = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  if (!randomNumber(3)) {
+    updatedItem.max_order_qty = randomNumber(25, 3);
+  }
+  return updatedItem;
+};
 
-// (use randomNumber)
-// generateReturnsCondition
-// generateFlags
+const generateReturnsCondition = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  if (!randomNumber(2)) {
+    updatedItem.returns_condition = faker.lorem.paragraphs();
+  }
+  return updatedItem;
+};
+
+const generateInventoryCount = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  let min = 1;
+  if (updatedItem.max_order_qty) {
+    min = updatedItem.max_order_qty;
+  }
+  updatedItem.inventory_count = randomNumber(40, min);
+  return updatedItem;
+};
+
+const generateInOtherCarts = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  if (!randomNumber(2)) {
+    let max = 20;
+    if (updatedItem.inventory_count) {
+      max = updatedItem.inventory_count;
+    }
+    updatedItem.in_other_carts = randomNumber(max, 1);
+  }
+  return updatedItem;
+};
+
+// true/false: giftWrap, faqs, bestseller, personalizable, handmade, vintage
+const generateDescriptorFlags = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  updatedItem.giftWrap = 0;
+  updatedItem.faqs = 0;
+  updatedItem.bestseller = 0;
+  updatedItem.personalizable = 1;
+  updatedItem.handmade = 0;
+  updatedItem.vintage = 0;
+  if (!randomNumber(2)) {
+    updatedItem.giftWrap = 1;
+  }
+  if (!randomNumber(2)) {
+    updatedItem.faqs = 1;
+  }
+  if (!randomNumber(2)) {
+    updatedItem.bestseller = 1;
+  }
+  if (!randomNumber(2)) {
+    updatedItem.personalizable = 1;
+  }
+  if (!!randomNumber(5)) {
+    updatedItem.handmade = 1;
+  }
+  if (!randomNumber(2)) {
+    updatedItem.vintage = 1;
+  }
+
+  return updatedItem;
+};
 
 const generateItemRequiredFields = function () {
   let title = generateTitle();
@@ -186,22 +228,101 @@ const generateItemRequiredFields = function () {
 
 const addOptionals = function (basicItem) {
   let item = generateDimensions(basicItem);
+  item = generateMaxOrderQty(item);
+  item = generateReturnsCondition(item);
+  item = generateInventoryCount(item);
+  item = generateInOtherCarts(item);
+  item = generateDescriptorFlags(item);
 
   return item;
-}
+};
 
 const generateItem = function () {
   let item = generateItemRequiredFields();
   item = addOptionals(item);
 
   return item;
-}
+};
 
-// console.log(generateShipping());
-// console.log(generateLocations());
-console.log(generateItem());
+const generateItems = function () {
+  let items = [];
+  for (let i = 1; i <= 100; i++) {
+    items.push(generateItem());
+  }
+  return items;
+};
 
-// generateItems();
 
+//  ******************  generates options data  ******************
+/*
+OPTIONS
++---------+----------+------+-----+---------+----------------+
+| Field   | Type     | Null | Key | Default | Extra          |
++---------+----------+------+-----+---------+----------------+
+| id      | int(11)  | NO   | PRI | NULL    | auto_increment |
+| item_id | int(11)  | NO   | MUL | NULL    |                |
+| title   | char(20) | NO   |     | NULL    |                |
+| list    | text     | NO   |     | NULL    |                |
++---------+----------+------+-----+---------+----------------+
+
+types of options...
+color
+size
+-- blah x blah (price)
+-- clothing size
+height
+orientation
+--- horizontal, vertical
+*/
+
+const makeSizeOption = function () {
+  let sizeList = [];
+  if (!randomNumber(3)) {
+    sizeList = ['small', 'medium', 'large'];
+  } else {
+    let numSizes = randomNumber(5, 2);
+    let dimensionOne = randomNumber(4, 1);
+    let dimensionTwo = randomNumber(4, 1);
+    for (let i = 0; i < numSizes; i++) {
+      let step = i * 3;
+      sizeList.push(`${dimensionOne + step} x ${dimensionTwo +  step}`);
+    }
+  }
+  return [...sizeList].join(',' );
+};
+
+const makeColorOption = function () {
+  let colors = new Set();
+  let numColors = randomNumber(7, 3);
+  for (let i = 0; i < numColors; i++) {
+    colors.add(faker.commerce.color());
+  }
+  return [...colors].join(',');
+};
+
+const makeHeightOption = function () {
+
+};
+
+const makeOrientationOption = function () {
+
+};
+
+const generateOneOption = function () {
+
+};
+
+const generateOptionsForItem = function () {
+
+};
+
+const generateOptiosForAllItems = function () {
+
+};
+
+
+//  ******************  generates sales data  ******************
+
+console.log(makeColorOption());
 
 exports.populateDb;

@@ -84,7 +84,7 @@ dbConnection.query(
     return_synopsis   CHAR(100)     NOT NULL,
     dimensions        VARCHAR(100),
     max_order_qty     INT,
-    returns_condttion TEXT,
+    returns_condition TEXT,
     inventory_count   INT,
     in_other_carts    INT,
     gift_wrap         BOOLEAN,
@@ -124,7 +124,7 @@ dbConnection.query(
 );
 
 dbConnection.query(
-  `CREATE TABLE IF NOT EXISTS sales (
+  `CREATE TABLE IF NOT EXISTS markdowns (
     id          INT   NOT NULL AUTO_INCREMENT,
     item_id     INT   NOT NULL,
     discount    INT   NOT NULL,
