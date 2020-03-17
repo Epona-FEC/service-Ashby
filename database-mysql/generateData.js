@@ -74,16 +74,16 @@ const generateShipping = function () {
 +-------------------+--------------+------+-----+---------+----------------+
 | Field             | Type         | Null | Key | Default | Extra          |
 +-------------------+--------------+------+-----+---------+----------------+
-| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
-| title             | char(180)    | NO   |     | NULL    |                |
-| price             | float(7,2)   | NO   |     | NULL    |                |
-| shipping_id       | int(11)      | NO   | MUL | NULL    |                |
-| materials         | char(180)    | NO   |     | NULL    |                |
-| description       | text         | NO   |     | NULL    |                |
-| location_id       | int(11)      | NO   | MUL | NULL    |                |
-| policies          | text         | NO   |     | NULL    |                |
-| return_synopsis   | char(100)    | NO   |     | NULL    |                |
-| dimensions        | varchar(100) | YES  |     | NULL    |                |
+| `id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| `title             | char(180)    | NO   |     | NULL    |                |
+| `price             | float(7,2)   | NO   |     | NULL    |                |
+| `shipping_id       | int(11)      | NO   | MUL | NULL    |                |
+| `materials         | char(180)    | NO   |     | NULL    |                |
+| `description       | text         | NO   |     | NULL    |                |
+| `location_id       | int(11)      | NO   | MUL | NULL    |                |
+| `policies          | text         | NO   |     | NULL    |                |
+| `return_synopsis   | char(100)    | NO   |     | NULL    |                |
+| `dimensions        | varchar(100) | YES  |     | NULL    |                |
 | max_order_qty     | int(11)      | YES  |     | NULL    |                |
 | returns_condttion | text         | YES  |     | NULL    |                |
 | inventory_count   | int(11)      | YES  |     | NULL    |                |
@@ -98,6 +98,7 @@ const generateShipping = function () {
 
 */
 
+// the first several are all required fields - not null
 const generateTitle = function () {
   let pieces = [];
   let additional = '';
@@ -125,40 +126,80 @@ const generatePrice = function () {
 };
 
 const generateMaterials = function () {
-  let numMaterials = randomNumber(3);
+  let numMaterials = randomNumber(4, 1);
   let materials = new Set;
   for (let i = 1; i <= numMaterials; i++) {
     let newMat = faker.commerce.productMaterial();
     materials.add(newMat);
   }
 
-  if (materials.length === 0) {
-    return null;
-  } else {
-    return [...materials].join(', ');
-  }
+  return [...materials].join(', ');
+};
+
+const generateDescription = function () {
+  return faker.lorem.paragraphs();
+};
+
+const generatePolicies = function () {
+  return faker.lorem.paragraphs();
+};
+
+const generateReturnSynopsis = function () {
+  return faker.lorem.lines();
 }
 
+// the rest of these fields CAN be null
+const generateDimensions = function (itemSoFar) {
+  let updatedItem = {...itemSoFar};
+  let dimensions = '';
+  if (!randomNumber(3)) {
+    let scale = ['inches' ,'feet'];
+    let length = randomNumber(6, 2);
+    dimensions += `Length: ${length} ${scale[randomNumber(1)]}`;
+    if (!randomNumber(3)) {
+      let width = randomNumber(6, 2);
+      dimensions += `, Width: ${width} ${scale[randomNumber(1)]}`
+    }
+  }
+  if (dimensions.length > 0) {
+    updatedItem.dimensions = dimensions;
+  }
+  return updatedItem;
+}
+
+
 // (use randomNumber)
-// generateMaterials
-// generateDescription
-// generatePolicies
-// generateReturnSynopsis
-// generateDimensions
 // generateReturnsCondition
 // generateFlags
 
-const generateItems = function () {
+const generateItemRequiredFields = function () {
   let title = generateTitle();
   let price = generatePrice();
   let shipping_id = randomNumber(100, 1);
   let materials = generateMaterials();
-  return {title, price, shipping_id, materials};
+  let description = generateDescription();
+  let location_id = randomNumber(100, 1);
+  let policies = generatePolicies();
+  let returnSynopsis = generateReturnSynopsis();
+  return {title, price, shipping_id, materials, description, location_id, policies, returnSynopsis};
+};
+
+const addOptionals = function (basicItem) {
+  let item = generateDimensions(basicItem);
+
+  return item;
+}
+
+const generateItem = function () {
+  let item = generateItemRequiredFields();
+  item = addOptionals(item);
+
+  return item;
 }
 
 // console.log(generateShipping());
 // console.log(generateLocations());
-console.log(generateItems());
+console.log(generateItem());
 
 // generateItems();
 
