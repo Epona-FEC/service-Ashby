@@ -144,7 +144,6 @@ const generateDimensions = function (itemSoFar) {
   return updatedItem;
 };
 
-// max_order_qty
 const generateMaxOrderQty = function (itemSoFar) {
   let updatedItem = {...itemSoFar};
   if (!randomNumber(3)) {
@@ -254,26 +253,6 @@ const generateItems = function () {
 
 
 //  ******************  generates options data  ******************
-/*
-OPTIONS
-+---------+----------+------+-----+---------+----------------+
-| Field   | Type     | Null | Key | Default | Extra          |
-+---------+----------+------+-----+---------+----------------+
-| id      | int(11)  | NO   | PRI | NULL    | auto_increment |
-| item_id | int(11)  | NO   | MUL | NULL    |                |
-| title   | char(20) | NO   |     | NULL    |                |
-| list    | text     | NO   |     | NULL    |                |
-+---------+----------+------+-----+---------+----------------+
-
-types of options...
-color
-size
--- blah x blah (price)
--- clothing size
-height
-orientation
---- horizontal, vertical
-*/
 
 const getRandomDimensionUnit = function () {
   let dimensions = ['centimeter', 'inch', 'foot', 'meter'];
@@ -326,17 +305,12 @@ const makeColorOption = function () {
 const makeHeightOption = function () {
   let heights = [];
   let numHeights = randomNumber(6, 3);
-  // get a unit type
   let unit = getRandomDimensionUnit();
-  // get plural of it
   let units = pluralizeUnit(unit);
   heights.push(`1 ${unit}`);
-  // iterate numHeights
   for (let i = 2; i < numHeights; i++) {
-    // construct array
     heights.push(`${i} ${units}`);
   }
-  // return string from array
   return [...heights].join(',');
 };
 
@@ -387,11 +361,38 @@ const generateOptiosForAllItems = function () {
 };
 
 
-//  ******************  generates sales data  ******************
+//  ******************  generates markdowns data  ******************
+const makeRandomDiscount = function () {
+  let discount = randomNumber(70, 5);
+  return discount;
+};
 
+const makeEndDate = function () {
+  return faker.date.future();
+};
 
-let allOptions = generateOptiosForAllItems();
-console.log(allOptions);
-console.log(allOptions.length);
+const generateOneMarkdown = function () {
+  let result = null;
+  if (faker.random.boolean()) {
+    let discount = makeRandomDiscount();
+    result = {'discount': discount};
+    if (faker.random.boolean()) {
+      let end = makeEndDate();
+      result['end_date'] = end;
+    }
+  }
+  return result;
+};
+
+const generateAllMarkdowns = function () {
+  let results = [];
+
+  for (let i = 0; i < 100; i++) {
+    let markdown = generateOneMarkdown();
+    results.push(markdown);
+  }
+
+  return results;
+}
 
 exports.populateDb;
