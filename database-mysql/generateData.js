@@ -299,13 +299,13 @@ const makeSizeOption = function () {
     let unitOne = getRandomDimensionUnit();
     let unitTwo = unitOne;
     let dimensionOne = randomNumber(4, 1);
+    let dimensionTwo = randomNumber(4, 1);
     if (dimensionOne > 1) {
       unitOne = pluralizeUnit(unitOne);
     }
     if (dimensionTwo > 1) {
       unitTwo = pluralizeUnit(unitTwo);
     }
-    let dimensionTwo = randomNumber(4, 1);
     for (let i = 0; i < numSizes; i++) {
       let step = i * 3;
       sizeList.push(`${dimensionOne + step} ${unitOne} x ${dimensionTwo +  step} ${unitTwo}`);
@@ -345,25 +345,34 @@ const makeOrientationOption = function () {
 };
 
 const generateOneOption = function (type) {
-  // empty string to store result
-  // if type is size
-    // call makeSizeOption
-  // else if type is color
-    // call makeColorOption
-  // else if type is height
-    // call makeHeightOption
-  // else if type is orientation
-    // call makeOrientationOption
-
-  // return result
+  let result = '';
+  if (type === 'size') {
+    result = makeSizeOption();
+  } else if (type === 'color') {
+    result = makeColorOption();
+  } else if (type === 'height') {
+    result = makeHeightOption();
+  } else {
+    result = makeOrientationOption();
+  }
+  return result;
 };
 
 const generateOptionsForItem = function () {
-  // random change to have an option - 1 in 2
-    // random number of options 1-2
-    // make sure they're different options
-    // call each
-  // return an object with option type: string of options
+  let results = {}
+  let optionTypes = ['size', 'color', 'height', 'orientation'];
+  let numOptions;
+  if (!faker.random.boolean()) {
+    return null;
+  }
+  numOptions = randomNumber(2, 1);
+  for (let i = 1; i <= numOptions; i++) {
+    let optionIndex = randomNumber(optionTypes.length - 1);
+    let optionValue = generateOneOption(optionTypes[optionIndex]);
+    results[optionTypes[optionIndex]] = optionValue;
+    optionTypes.splice(optionIndex, 1);
+  }
+  return results;
 };
 
 const generateOptiosForAllItems = function () {
@@ -380,6 +389,6 @@ const generateOptiosForAllItems = function () {
 //  ******************  generates sales data  ******************
 
 
-console.log(makeHeightOption());
+console.log(generateOptionsForItem());
 
 exports.populateDb;
