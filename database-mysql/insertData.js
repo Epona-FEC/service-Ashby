@@ -93,8 +93,18 @@ const fillOptionsTable = function () {
   );
 };
 
-
-
+const fillMarkdownsTable = function () {
+  let query = 'INSERT INTO markdowns (item_id, discount, end_date) VALUES ?';
+  let markdowns = data.generateAllMarkdowns();
+  dbConnection.query(
+    query,
+    [markdowns],
+    function (err, result) {
+      console.log(err);
+      console.log(result);
+    }
+  );
+}
 
 dbConnection.end();
 

@@ -380,27 +380,29 @@ const makeEndDate = function () {
 };
 
 const generateOneMarkdown = function () {
-  let result = null;
+  let result = [];
+  let discount = null;
+  let end = null;
   if (faker.random.boolean()) {
-    let discount = makeRandomDiscount();
-    result = {'discount': discount};
+    discount = makeRandomDiscount();
     if (faker.random.boolean()) {
-      let end = makeEndDate();
-      result['end_date'] = end;
+      end = makeEndDate();
     }
+    result = [discount, end];
   }
   return result;
 };
 
 const generateAllMarkdowns = function () {
   let results = [];
+  let item_id;
 
   for (let i = 0; i < 100; i++) {
+    item_id = i + 1;
     let markdown = generateOneMarkdown();
-    if (markdown !== null) {
-      markdown.item_id = i + 1;
+    if (markdown.length > 0) {
+      results.push([item_id, ...markdown]);
     }
-    results.push(markdown);
   }
 
   return results;
