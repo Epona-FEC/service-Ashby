@@ -16,25 +16,33 @@ GET: /items
 GET: /item/:itemId
   Returns json data with item details
 GET: /shipping/:itemId
-  Returns shipping cost to country and zip/postal code provided
+  Returns shipping cost
 */
 
 
-// function here to return a promise for fetching all items
 const fetchAllItems = function (callback) {
   console.log('in server/index/fetchAllItems');
-  data.allItems((error, results, fields) => {
+  data.allItems((error, results) => {
     if (error) {
       console.error('error fetching all items from database', error);
       callback('DB ERROR');
     } else {
-      console.log('results:', results);
-      console.log('fields:', fields);
       callback(null, results);
     }
   });
 };
 
+const fetchOneItem = function (itemId, callback) {
+  console.log('in server/index/fetchOnetem');
+  data.oneItem(itemId, (error, results) => {
+    if (error) {
+      console.error('error fetching one items from database', error);
+      callback('DB ERROR');
+    } else {
+      callback(null, results);
+    }
+  });
+};
 
 app.get('/items', (req, res) => {
   fetchAllItems((error, results) => {
@@ -46,6 +54,7 @@ app.get('/items', (req, res) => {
     }
   });
 });
+// curl -i http://localhost:3004/items
 
 app.get('/item/:itemId', (req, res) => {
   let itemId = req.params.itemId;
@@ -53,7 +62,14 @@ app.get('/item/:itemId', (req, res) => {
   if ((itemId < 1) || (itemId > 100)) {
     res.status(404).send('item number out of range');
   } else {
-    res.status(404).send('fetching specific item not implemented yet');
+    fetchOneItem(itemId, (error, results) => {
+      if (error) {
+        console.error(error);
+        res.status(404).send(error);
+      } else {
+        res.status(200).send(results);
+      }
+    });
   }
 });
 // curl -i http://localhost:3004/item/1

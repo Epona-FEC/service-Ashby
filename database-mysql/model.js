@@ -17,18 +17,29 @@ dbConnection.connect((err) => {
 
 dbConnection.query('USE etsy_products');
 
-// need a function that fetches all items
-const selectAllItems = function (callback) {
-  console.log('in database/model/selectAllItems');
-  let query = `SELECT * FROM items`;
-  dbConnection.query(query, (error, results, fields) => {
+const getData = function (query, callback) {
+  console.log('in database/model/getData');
+  dbConnection.query(query, (error, results) => {
     if (error) {
       callback(error);
     } else {
-      callback(null, results, fields);
+      callback(null, results);
     }
   });
+};
+
+const selectAllItems = function (callback) {
+  console.log('in database/model/selectAllItems');
+  let query = `SELECT * FROM items`;
+  getData(query, callback);
+};
+
+const selectOneItem = function (itemId, callback) {
+  console.log('in database/model/selectOneItem');
+  let query = `SELECT * FROM items WHERE id = ${itemId}`;
+  getData(query, callback);
 }
 
 exports.dbConnection = dbConnection;
 exports.selectAllItems = selectAllItems;
+exports.selectOneItem = selectOneItem;
