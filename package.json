@@ -9,7 +9,7 @@
   },
   "scripts": {
     "buildData": "node ./database-mysql/createDbAndTables.js",
-    "server-test": "nodemon --watch server server/index.js"
+    "server-test": "nodemon --watch server --watch database-mysql server/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",

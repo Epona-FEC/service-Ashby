@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const data = require('../database-mysql');
+const data = require('../database-mysql/index');
 
 const app = express();
 const port = 3004;
@@ -20,8 +20,31 @@ GET: /shipping/:{itemId, country, code}
 */
 
 
+// function here to return a promise for fetching all items
+const fetchAllItems = function (callback) {
+  console.log('in server/index/fetchAllItems');
+  data.allItems((error, results, fields) => {
+    if (error) {
+      console.error('error fetching all items from database', error);
+      callback('DB ERROR');
+    } else {
+      console.log('results:', results);
+      console.log('fields:', fields);
+      callback(null, results);
+    }
+  });
+};
+
+
 app.get('/items', (req, res) => {
-  res.sendStatus(200);
+  fetchAllItems((error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(404).send(error);
+    } else {
+      res.status(200).send(results);
+    }
+  });
 });
 
 // app.get('/item/:itemId', (req, res) => {
