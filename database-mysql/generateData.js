@@ -119,106 +119,96 @@ const generatePolicies = function () {
 };
 
 const generateReturnSynopsis = function () {
-  return faker.lorem.lines();
+  return faker.lorem.sentence();
 };
 
 // the rest of these fields CAN be null
-const generateDimensions = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
-  let dimensions = '';
+const generateDimensions = function () {
+  let dimensions = null;
   if (!randomNumber(3)) {
     let scale = ['inches' ,'feet'];
     let length = randomNumber(6, 2);
-    dimensions += `Length: ${length} ${scale[randomNumber(1)]}`;
+    dimensions = `Length: ${length} ${scale[randomNumber(1)]}`;
     if (!randomNumber(3)) {
       let width = randomNumber(6, 2);
       dimensions += `, Width: ${width} ${scale[randomNumber(1)]}`
     }
   }
-  if (dimensions.length > 0) {
-    updatedItem.dimensions = dimensions;
-  } else {
-    updatedItem.dimensions = null;
-  }
-  return updatedItem;
+  return dimensions;
 };
 
-const generateMaxOrderQty = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
+const generateMaxOrderQty = function () {
+  let max_order_qty;
   if (!randomNumber(3)) {
-    updatedItem.max_order_qty = randomNumber(25, 3);
+    max_order_qty = randomNumber(25, 3);
   } else {
-    updatedItem.max_order_qty = null;
+    max_order_qty = null;
   }
-  return updatedItem;
+  return max_order_qty;
 };
 
-const generateReturnsCondition = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
+const generateReturnsCondition = function () {
+  let returns_condition;
   if (!randomNumber(2)) {
-    updatedItem.returns_condition = faker.lorem.paragraphs();
+    returns_condition = faker.lorem.paragraphs();
   } else {
-    updatedItem.returns_condition = null;
+    returns_condition = null;
   }
-  return updatedItem;
+  return returns_condition;
 };
 
-const generateInventoryCount = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
+const addInventoryCount = function (itemSoFar) {
+  let updatedItem = [...itemSoFar];
   let min = 1;
-  if (updatedItem.max_order_qty) {
-    min = updatedItem.max_order_qty;
+  // max_order_qty is at index 9 of itemSoFar
+  if (updatedItem[9] !== null) {
+    min = updatedItem[9];
   }
-  updatedItem.inventory_count = randomNumber(40, min);
+  updatedItem.push(randomNumber(40, min));
   return updatedItem;
 };
 
 const generateInOtherCarts = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
-  if (!randomNumber(2)) {
+  let updatedItem = [...itemSoFar];
+  let inOtherCarts;
+  if (faker.random.boolean()) {
     let max = 20;
-    if (updatedItem.inventory_count) {
-      max = updatedItem.inventory_count;
+    // inventory_count is at index 11 of itemSoFar
+    if (updatedItem[11] !== null) {
+      max = updatedItem[11];
     }
-    updatedItem.in_other_carts = randomNumber(max, 1);
+    inOtherCarts = randomNumber(max, 1);
   } else {
-    updatedItem.in_other_carts = null;
+    inOtherCarts = null;
   }
+  updatedItem.push(inOtherCarts);
   return updatedItem;
 };
 
 // true/false: giftWrap, faqs, bestseller, personalizable, handmade, vintage
 const generateDescriptorFlags = function (itemSoFar) {
-  let updatedItem = {...itemSoFar};
-  updatedItem.giftWrap = 0;
-  updatedItem.faqs = 0;
-  updatedItem.bestseller = 0;
-  updatedItem.personalizable = 1;
-  updatedItem.handmade = 0;
-  updatedItem.vintage = 0;
-  if (!randomNumber(2)) {
-    updatedItem.gift_wrap = 1;
-  }
-  if (!randomNumber(2)) {
-    updatedItem.faqs = 1;
-  }
-  if (!randomNumber(2)) {
-    updatedItem.bestseller = 1;
-  }
-  if (!randomNumber(2)) {
-    updatedItem.personalizable = 1;
-  }
-  if (!!randomNumber(5)) {
-    updatedItem.handmade = 1;
-  }
-  if (!randomNumber(2)) {
-    updatedItem.vintage = 1;
-  }
+  let updatedItem = [...itemSoFar];
+
+  let giftWrap = randomNumber(1);
+  let faqs = randomNumber(1);
+  let bestseller = randomNumber(1);;
+  let personalizable = randomNumber(1);;
+  let handmade = randomNumber(1);;
+  let vintage = randomNumber(1);
+
+  updatedItem.push(giftWrap);
+  updatedItem.push(faqs);
+  updatedItem.push(bestseller);
+  updatedItem.push(personalizable);
+  updatedItem.push(handmade);
+  updatedItem.push(vintage);
 
   return updatedItem;
 };
 
 const generateItemRequiredFields = function () {
+  let result = [];
+
   let title = generateTitle();
   let price = generatePrice();
   let shipping_id = randomNumber(100, 1);
@@ -227,17 +217,27 @@ const generateItemRequiredFields = function () {
   let location_id = randomNumber(100, 1);
   let policies = generatePolicies();
   let return_synopsis = generateReturnSynopsis();
-  return {title, price, shipping_id, materials, description, location_id, policies, returnSynopsis};
+
+  result.push(title);
+  result.push(price);
+  result.push(shipping_id);
+  result.push(materials);
+  result.push(description);
+  result.push(location_id);
+  result.push(policies);
+  result.push(return_synopsis);
+  return result;
 };
 
 const addOptionals = function (basicItem) {
-  let item = generateDimensions(basicItem);
-  item = generateMaxOrderQty(item);
-  item = generateReturnsCondition(item);
-  item = generateInventoryCount(item);
+  let item = [...basicItem];
+
+  item.push(generateDimensions());
+  item.push(generateMaxOrderQty());
+  item.push(generateReturnsCondition());
+  item = addInventoryCount(item);
   item = generateInOtherCarts(item);
   item = generateDescriptorFlags(item);
-
   return item;
 };
 
@@ -431,9 +431,9 @@ const generateAllMarkdowns = function () {
 // console.log(markdowns);
 // console.log(markdowns.length);
 
-// exports.populateDb;
 exports.generateAllLocations = generateAllLocations;
 exports.generateAllShipping = generateAllShipping;
 exports.generateAllItems = generateAllItems;
 exports.generateAllOptions = generateAllOptions;
 exports.generateAllMarkdowns = generateAllMarkdowns;
+
