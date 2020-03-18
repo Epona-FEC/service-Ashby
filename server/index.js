@@ -44,6 +44,11 @@ const fetchOneItem = function (itemId, callback) {
   });
 };
 
+const getShippingFee = function () {
+  let fee = '6.99';
+  return fee;
+};
+
 app.get('/items', (req, res) => {
   fetchAllItems((error, results) => {
     if (error) {
@@ -77,7 +82,8 @@ app.get('/item/:itemId', (req, res) => {
 app.get('/shipping/:itemId', (req, res) => {
   let itemId = req.params.itemId;
   console.log(itemId);
-  res.status(404).send('returning shipping data not implemented yet');
+  let fee = getShippingFee();
+  res.status(200).send(fee);
 });
 // curl -i http://localhost:3004/shipping/1
 
