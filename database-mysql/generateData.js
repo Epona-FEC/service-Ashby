@@ -408,31 +408,6 @@ const generateAllMarkdowns = function () {
   return results;
 }
 
-// generateAllLocations test:
-// let locations = generateAllLocations();
-// console.log(locations);
-// console.log(locations.length);
-
-// // generateAllShipping test:
-// let shipping = generateAllShipping();
-// console.log(shipping);
-// console.log(shipping.length);
-
-// // generateAllItems test:
-// let items = generateAllItems();
-// console.log(items);
-// console.log(items.length);
-
-// // generateAllOptions test:
-// let options = generateAllOptions();
-// console.log(options);
-// console.log(options.length);
-
-// // generateAllMarkdowns test:
-// let markdowns = generateAllMarkdowns();
-// console.log(markdowns);
-// console.log(markdowns.length);
-
 
 exports.generateAllLocations = generateAllLocations;
 exports.generateAllShipping = generateAllShipping;

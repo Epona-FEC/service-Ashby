@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-// const insertData = require('./insertData.js');
+const insertData = require('./insertData');
 
 // ***********  db connection  ***********
 const connectionOptions = {
@@ -139,6 +139,37 @@ dbConnection.query(
     }
   }
 );
+
+// **************  populate tables with fake data  **************
+insertData.fillLocationsTable(dbConnection, (err, result) => {
+  if (err) {
+    console.error('db locations data insertion error:', err);
+  }
+});
+
+insertData.fillShippingTable(dbConnection, (err, result) => {
+  if (err) {
+    console.error('db shipping data insertion error:', err);
+  }
+});
+
+insertData.fillItemsTable(dbConnection, (err, result) => {
+  if (err) {
+    console.error('db items data insertion error:', err);
+  }
+});
+
+insertData.fillOptionsTable(dbConnection, (err, result) => {
+  if (err) {
+    console.error('db options data insertion error:', err);
+  }
+});
+
+insertData.fillMarkdownsTable(dbConnection, (err, result) => {
+  if (err) {
+    console.error('db markdowns data insertion error:', err);
+  }
+});
 
 
 dbConnection.end();
