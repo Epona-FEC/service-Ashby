@@ -18,7 +18,6 @@ dbConnection.connect((err) => {
 dbConnection.query('use etsy_products');
 
 const getData = function (query, callback) {
-  console.log('in database/model/getData');
   dbConnection.query(query, (error, results) => {
     if (error) {
       callback(error);
@@ -74,12 +73,11 @@ const getItemMarkdowns = function (itemId, callback) {
 };
 
 const selectAllItems = function (callback) {
-  let query = `selext * from items`;
+  let query = `select * from items`;
   getData(query, callback);
 };
 
 const selectOneItem = function (itemId, callback) {
-  console.log('in database/model/selectOneItem');
   getItemDetails(itemId, (error, results) => {
     if (error) {
       callback(error);

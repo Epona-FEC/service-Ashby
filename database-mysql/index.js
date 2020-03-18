@@ -2,7 +2,6 @@ const db = require('./model.js');
 
 
 const allItems = function (callback) {
-  console.log('in database/index/allItems');
   db.selectAllItems((error, results) => {
     if (error) {
       callback(error);
@@ -13,7 +12,6 @@ const allItems = function (callback) {
 };
 
 const oneItem = function (itemId, callback) {
-  console.log('in database/index/oneItem');
   db.selectOneItem(itemId, (error, results) => {
     if (error) {
       callback(error);

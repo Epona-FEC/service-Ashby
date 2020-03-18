@@ -10,10 +10,8 @@ app.use(morgan('dev'));
 // ********************  data fetching  ********************
 
 const fetchAllItems = function (callback) {
-  console.log('in server/index/fetchAllItems');
   data.allItems((error, results) => {
     if (error) {
-      console.error('error fetching all items from database', error);
       callback('DB ERROR');
     } else {
       callback(null, results);
@@ -22,10 +20,8 @@ const fetchAllItems = function (callback) {
 };
 
 const fetchOneItem = function (itemId, callback) {
-  console.log('in server/index/fetchOnetem');
   data.oneItem(itemId, (error, results) => {
     if (error) {
-      console.error('error fetching one items from database', error);
       callback('DB ERROR');
     } else {
       callback(null, results);
@@ -56,7 +52,6 @@ app.get('/items', (req, res) => {
 
 app.get('/item/:itemId', (req, res) => {
   let itemId = req.params.itemId;
-  console.log(itemId);
   if ((itemId < 1) || (itemId > 100)) {
     res.status(404).send('item number out of range');
   } else {
@@ -71,11 +66,10 @@ app.get('/item/:itemId', (req, res) => {
   }
 });
 // manual test with:
-// curl -i http://localhost:3004/item/1
+// curl -i http://localhost:3004/item/5
 
 app.get('/shipping/:itemId', (req, res) => {
   let itemId = req.params.itemId;
-  console.log(itemId);
   let fee = getShippingFee();
   res.status(200).send(fee);
 });
