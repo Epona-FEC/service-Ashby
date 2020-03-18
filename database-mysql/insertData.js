@@ -49,7 +49,25 @@ const fillShippingTable = function () {
 const fillItemsTable = function () {
   let query =
     `INSERT INTO items (
-      title, price, shipping_id, materials, description, location_id, policies, return_synopsis,dimensions, max_order_qty, returns_condition, inventory_count, in_other_carts, gift_wrap, faqs,bestseller, personalizable, handmade, vintage
+      title,
+      price,
+      shipping_id,
+      materials,
+      description,
+      location_id,
+      policies,
+      return_synopsis,
+      dimensions,
+      max_order_qty,
+      returns_condition,
+      inventory_count,
+      in_other_carts,
+      gift_wrap,
+      faqs,
+      bestseller,
+      personalizable,
+      handmade,
+      vintage
     ) VALUES ?`;
   let itemsInfo = data.generateAllItems();
   dbConnection.query(
@@ -62,17 +80,21 @@ const fillItemsTable = function () {
   );
 };
 
+const fillOptionsTable = function () {
+  let query = 'INSERT INTO options (item_id, title, list) VALUES ?';
+  let options = data.generateAllOptions();
+  dbConnection.query(
+    query,
+    [options],
+    function (err, result) {
+      console.log(err);
+      console.log(result);
+    }
+  );
+};
 
 
 
-// fillItemsTable();
-
-// dbConnection.query(
-//   `Select returns_condition from items`,
-//   function (err, results) {
-//     console.log(results)
-//   }
-// );
 
 dbConnection.end();
 

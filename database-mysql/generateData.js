@@ -338,18 +338,18 @@ const generateOneOption = function (type) {
 };
 
 const generateOptionsForItem = function () {
-  let results = {}
+  let results = []
   let optionTypes = ['size', 'color', 'height', 'orientation'];
-  let numOptions;
-  if (!faker.random.boolean()) {
-    return null;
-  }
-  numOptions = randomNumber(3, 1);
+  let numOptions = randomNumber(3);
   for (let i = 1; i <= numOptions; i++) {
-    let optionIndex = randomNumber(optionTypes.length - 1);
-    let optionValue = generateOneOption(optionTypes[optionIndex]);
-    results[optionTypes[optionIndex]] = optionValue;
-    optionTypes.splice(optionIndex, 1);
+    let optionTypeIndex = randomNumber(optionTypes.length - 1);
+
+    let optionTitle = optionTypes[optionTypeIndex];
+    let optionList = generateOneOption(optionTypes[optionTypeIndex]);
+    let option = [optionTitle, optionList];
+    results.push(option);
+
+    optionTypes.splice(optionTypeIndex, 1);
   }
   return results;
 };
@@ -358,13 +358,13 @@ const generateAllOptions = function () {
   let results = [];
 
   for (let i = 0; i < 100; i++) {
+    let item_id = i + 1;
     let options = generateOptionsForItem();
-    if (options !== null) {
-      options.item_id = i + 1;
+    for (let j = 0; j < options.length; j++) {
+      results.push([item_id, ...options[j]]);
     }
-    results.push(options);
-  }
 
+  }
   return results;
 };
 
@@ -431,9 +431,9 @@ const generateAllMarkdowns = function () {
 // console.log(markdowns);
 // console.log(markdowns.length);
 
+
 exports.generateAllLocations = generateAllLocations;
 exports.generateAllShipping = generateAllShipping;
 exports.generateAllItems = generateAllItems;
 exports.generateAllOptions = generateAllOptions;
 exports.generateAllMarkdowns = generateAllMarkdowns;
-
