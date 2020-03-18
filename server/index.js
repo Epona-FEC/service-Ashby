@@ -15,7 +15,7 @@ GET: /items
   Returns all items
 GET: /item/:itemId
   Returns json data with item details
-GET: /shipping/:{itemId, country, code}
+GET: /shipping/:itemId
   Returns shipping cost to country and zip/postal code provided
 */
 
@@ -47,13 +47,23 @@ app.get('/items', (req, res) => {
   });
 });
 
-// app.get('/item/:itemId', (req, res) => {
-//   res.sendStatus(200);
-// });
+app.get('/item/:itemId', (req, res) => {
+  let itemId = req.params.itemId;
+  console.log(itemId);
+  if ((itemId < 1) || (itemId > 100)) {
+    res.status(404).send('item number out of range');
+  } else {
+    res.status(404).send('fetching specific item not implemented yet');
+  }
+});
+// curl -i http://localhost:3004/item/1
 
-// app.get('/shipping/:{itemId, country, code}', (req, res) => {
-//   res.sendStatus(200);
-// });
+app.get('/shipping/:itemId', (req, res) => {
+  let itemId = req.params.itemId;
+  console.log(itemId);
+  res.status(404).send('returning shipping data not implemented yet');
+});
+// curl -i http://localhost:3004/shipping/1
 
 app.listen(port, () => {
   console.log('Express server for item detail now listening on port 3004');
