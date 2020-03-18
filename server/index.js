@@ -7,18 +7,7 @@ const port = 3004;
 
 app.use(morgan('dev'));
 
-
-/*
-
-  routes needed:
-GET: /items
-  Returns all items
-GET: /item/:itemId
-  Returns json data with item details
-GET: /shipping/:itemId
-  Returns shipping cost
-*/
-
+// ********************  data fetching  ********************
 
 const fetchAllItems = function (callback) {
   console.log('in server/index/fetchAllItems');
@@ -49,6 +38,9 @@ const getShippingFee = function () {
   return fee;
 };
 
+
+// ********************  routing  ********************
+
 app.get('/items', (req, res) => {
   fetchAllItems((error, results) => {
     if (error) {
@@ -59,6 +51,7 @@ app.get('/items', (req, res) => {
     }
   });
 });
+// manual test with:
 // curl -i http://localhost:3004/items
 
 app.get('/item/:itemId', (req, res) => {
@@ -77,6 +70,7 @@ app.get('/item/:itemId', (req, res) => {
     });
   }
 });
+// manual test with:
 // curl -i http://localhost:3004/item/1
 
 app.get('/shipping/:itemId', (req, res) => {
@@ -85,9 +79,10 @@ app.get('/shipping/:itemId', (req, res) => {
   let fee = getShippingFee();
   res.status(200).send(fee);
 });
+// manual test with:
 // curl -i http://localhost:3004/shipping/1
+
 
 app.listen(port, () => {
   console.log('Express server for item detail now listening on port 3004');
 });
-
