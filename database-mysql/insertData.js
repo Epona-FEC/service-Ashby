@@ -62,18 +62,22 @@ const fillItemsTable = function () {
   );
 };
 
+
+
+
 // fillItemsTable();
 
-dbConnection.query(
-  `Select returns_condition from items`,
-  function (err, results) {
-    console.log(results)
-  }
-);
+// dbConnection.query(
+//   `Select returns_condition from items`,
+//   function (err, results) {
+//     console.log(results)
+//   }
+// );
 
 dbConnection.end();
 
 exports.fillLocationsTable = fillLocationsTable;
 exports.fillShippingTable = fillShippingTable;
+exports.fillItemsTable = fillItemsTable;
 
 // INSERT INTO locations (country, state, city) VALUES ?
