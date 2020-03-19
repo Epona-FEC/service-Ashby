@@ -1,3 +1,25 @@
-const dbConnection = require('./model.js');
+const db = require('./model.js');
 
-exports.data;
+
+const allItems = function (callback) {
+  db.selectAllItems((error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const oneItem = function (itemId, callback) {
+  db.selectOneItem(itemId, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+}
+
+exports.allItems = allItems;
+exports.oneItem = oneItem;

@@ -8,10 +8,13 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "buildData": "node ./database-mysql/createDbAndTables.js"
+    "buildData": "node ./database-mysql/createDbAndTables.js",
+    "server-test": "nodemon --watch server --watch database-mysql server/index.js",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jest": "^25.1.0",
     "mysql": "^2.18.1",
     "node": "10.18.1"
   },
