@@ -7,6 +7,9 @@ const port = 3004;
 
 app.use(morgan('dev'));
 
+app.use(express.static('client/dist'));
+
+
 // ********************  data fetching  ********************
 
 const fetchAllItems = function (callback) {
