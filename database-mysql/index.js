@@ -1,7 +1,7 @@
 const db = require('./model.js');
 
 
-const allItems = function (callback) {
+const allItems = function getAllItems(callback) {
   db.selectAllItems((error, results) => {
     if (error) {
       callback(error);
@@ -11,7 +11,7 @@ const allItems = function (callback) {
   });
 };
 
-const oneItem = function (itemId, callback) {
+const oneItem = function getOneItem(itemId, callback) {
   db.selectOneItem(itemId, (error, results) => {
     if (error) {
       callback(error);
@@ -19,7 +19,7 @@ const oneItem = function (itemId, callback) {
       callback(null, results);
     }
   });
-}
+};
 
 exports.allItems = allItems;
 exports.oneItem = oneItem;
