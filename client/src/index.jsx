@@ -1,9 +1,35 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CostContainer from './CostComponents/CostContainer.jsx';
+import OptionsContainer from './OptionComponents/OptionsContainer.jsx';
+import DetailsContainer from './DetailsComponents/DetailsContainer.jsx';
+import ShippingContainer from './ShippingComponents/ShippingContainer.jsx';
+import PoliciesContainer from './PoliciesComponents/PoliciesContainer.jsx';
+
+class ItemDetails extends React.Component {
+  constructor () {
+    super ();
+  };
+
+
+  render() {
+    return (
+      <div>
+        <h1>item name goes here</h1>
+        <CostContainer />
+        <OptionsContainer />
+        <DetailsContainer />
+        <ShippingContainer />
+        <PoliciesContainer />
+      </div>
+    );
+  };
+};
+
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('app')
+  <ItemDetails />,
+  document.getElementById('item-details')
 );
 
 
@@ -30,8 +56,6 @@ Cost Container
 
 Options Container
 ---
-| Item
-|
 | Choices Container
 | ---
 | | (options, may be more than one - in dropdowns)
