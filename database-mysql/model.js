@@ -3,8 +3,8 @@ const mysql = require('mysql');
 // ***********  db connection  ***********
 const connectionOptions = {
   user: 'root',
-  password: ''
-}
+  password: '',
+};
 
 const dbConnection = mysql.createConnection(connectionOptions);
 dbConnection.connect((err) => {
@@ -17,7 +17,7 @@ dbConnection.connect((err) => {
 
 dbConnection.query('use etsy_products');
 
-const getData = function (query, callback) {
+const getData = (query, callback) => {
   dbConnection.query(query, (error, results) => {
     if (error) {
       callback(error);
@@ -28,7 +28,7 @@ const getData = function (query, callback) {
 };
 
 const getItemDetails = function (itemId, callback) {
-  let query = `
+  const query = `
     select items.*,
       locations.country,
       locations.state,
@@ -47,7 +47,7 @@ const getItemDetails = function (itemId, callback) {
 };
 
 const getItemOptions = function (itemId, callback) {
-  let query = `
+  const query = `
     select
       options.title,
       options.list
@@ -60,7 +60,7 @@ const getItemOptions = function (itemId, callback) {
 };
 
 const getItemMarkdowns = function (itemId, callback) {
-  let query = `
+  const query = `
     select
       markdowns.discount,
       markdowns.end_date
@@ -73,51 +73,49 @@ const getItemMarkdowns = function (itemId, callback) {
 };
 
 const selectAllItems = function (callback) {
-  let query = `select * from items`;
+  const query = 'select * from items';
   getData(query, callback);
 };
 
 const selectOneItem = function (itemId, callback) {
-  getItemDetails(itemId, (error, results) => {
-    if (error) {
-      callback(error);
+  getItemDetails(itemId, (detailsError, itemDetails) => {
+    if (detailsError) {
+      callback(detailsError);
     } else {
-      let item = results;
-
-      getItemOptions(itemId, (error, results) => {
-        if (error) {
-          callback(error);
+      getItemOptions(itemId, (optionsError, itemOptions) => {
+        if (optionsError) {
+          callback(optionsError);
         } else {
-          let options = results;
-
-          getItemMarkdowns(itemId, (error, results) => {
-            if (error) {
-              callback(error);
+          getItemMarkdowns(itemId, (markdownsError, markdowns) => {
+            if (markdownsError) {
+              callback(markdownsError);
             } else {
-              let markdowns = results;
-              let itemDetails = {item, options, markdowns};
-              callback(null, itemDetails);
+              const item = { itemDetails, itemOptions, markdowns };
+              callback(null, item);
             }
           });
         }
       });
     }
   });
-}
+};
 
 exports.dbConnection = dbConnection;
 exports.selectAllItems = selectAllItems;
 exports.selectOneItem = selectOneItem;
 
 
-
 /*
 THIS GETS ITEM WITH LOCATION AND SHIPPING
-select items.*, locations.country, locations.state, locations.city, shipping.type, shipping.free, shipping.timeframe from locations inner join shipping inner join items on locations.id = items.location_id and shipping.id = items.shipping_id where items.id = 1;
+select items.*, locations.country, locations.state, locations.city, shipping.type, shipping.free,
+shipping.timeframe from locations inner join shipping inner join items on
+locations.id = items.location_id and shipping.id = items.shipping_id where items.id = 1;
 
 THIS GETS OPTIONS
-select options.title, options.list from options left join items on options.item_id = items.id where items.id = 55;
+select options.title, options.list from options left join items on options.item_id = items.id where
+items.id = 55;
 
 THIS GETS MARKDOWN
-select markdowns.discount, markdowns.end_date from markdowns left join items on markdowns.item_id = items.id where items.id = 9;
+select markdowns.discount, markdowns.end_date from markdowns left join items on
+markdowns.item_id = items.id where items.id = 9;
 */

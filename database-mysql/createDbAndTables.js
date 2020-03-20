@@ -4,10 +4,10 @@ const insertData = require('./insertData');
 // ***********  db connection  ***********
 const connectionOptions = {
   user: 'root',
-  password: ''
-}
+  password: '',
+};
 
-var dbConnection = mysql.createConnection(connectionOptions);
+const dbConnection = mysql.createConnection(connectionOptions);
 
 dbConnection.connect((err) => {
   if (err) {
@@ -21,20 +21,20 @@ dbConnection.connect((err) => {
 // ***********  db creation  ***********
 dbConnection.query(
   'DROP DATABASE IF EXISTS etsy_products',
-  function (err) {
+  (err) => {
     if (err) {
       console.error('db drop error', err);
     }
-  }
+  },
 );
 
 dbConnection.query(
   'CREATE DATABASE etsy_products',
-  function (err) {
+  (err) => {
     if (err) {
       console.error('db creation error', err);
     }
-  }
+  },
 );
 
 dbConnection.query('USE etsy_products');
@@ -49,11 +49,11 @@ dbConnection.query(
     timeframe CHAR(30),
     PRIMARY KEY (id)
   )`,
-  function (err) {
+  (err) => {
     if (err) {
       console.error('shipping table creation error', err);
     }
-  }
+  },
 );
 
 dbConnection.query(
@@ -64,11 +64,11 @@ dbConnection.query(
     city        CHAR(50),
     PRIMARY KEY (id)
   )`,
-  function (err) {
+  (err) => {
     if (err) {
       console.error('loations table creation error', err);
     }
-  }
+  },
 );
 
 dbConnection.query(
@@ -99,11 +99,11 @@ dbConnection.query(
     FOREIGN KEY (location_id)
       REFERENCES locations(id)
   )`,
-  function (err) {
+  (err) => {
     if (err) {
       console.error('items table creation error', err);
     }
-  }
+  },
 );
 
 dbConnection.query(
@@ -116,11 +116,11 @@ dbConnection.query(
     FOREIGN KEY (item_id)
       REFERENCES items(id)
   )`,
-  function (err) {
+  (err) => {
     if (err) {
       console.error('options table creation error', err);
     }
-  }
+  },
 );
 
 dbConnection.query(
@@ -133,43 +133,42 @@ dbConnection.query(
     FOREIGN KEY (item_id)
       REFERENCES items(id)
   )`,
-  function (err) {
+  (err) => {
     if (err) {
       console.error('sales table creation error', err);
     }
-  }
+  },
 );
 
 // **************  populate tables with fake data  **************
-insertData.fillLocationsTable(dbConnection, (err, result) => {
+insertData.fillLocationsTable(dbConnection, (err) => {
   if (err) {
     console.error('db locations data insertion error:', err);
   }
 });
 
-insertData.fillShippingTable(dbConnection, (err, result) => {
+insertData.fillShippingTable(dbConnection, (err) => {
   if (err) {
     console.error('db shipping data insertion error:', err);
   }
 });
 
-insertData.fillItemsTable(dbConnection, (err, result) => {
+insertData.fillItemsTable(dbConnection, (err) => {
   if (err) {
     console.error('db items data insertion error:', err);
   }
 });
 
-insertData.fillOptionsTable(dbConnection, (err, result) => {
+insertData.fillOptionsTable(dbConnection, (err) => {
   if (err) {
     console.error('db options data insertion error:', err);
   }
 });
 
-insertData.fillMarkdownsTable(dbConnection, (err, result) => {
+insertData.fillMarkdownsTable(dbConnection, (err) => {
   if (err) {
     console.error('db markdowns data insertion error:', err);
   }
 });
-
 
 dbConnection.end();

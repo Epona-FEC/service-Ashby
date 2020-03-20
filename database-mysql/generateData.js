@@ -1,26 +1,25 @@
 const faker = require('faker');
 
 //  ******************  helper  ******************
-const randomNumber = function(max, min = 0) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+const randomNumber = (max, min = 0) => Math.floor(Math.random() * (max - min + 1) + min);
 
 //  ******************  generates location data  ******************
-const generateUSlocation = function () {
-  let state = faker.address.stateAbbr();
-  let city = faker.address.city();
-  let country = 'United States of America';
+const generateUSlocation = () => {
+  const state = faker.address.stateAbbr();
+  const city = faker.address.city();
+
+  const country = 'United States of America';
   return [country, state, city];
 };
 
-const generateAllLocations = function () {
-  let places = [];
+const generateAllLocations = () => {
+  const places = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i += 1) {
     if (faker.random.boolean()) {
       places.push(generateUSlocation());
     } else {
-      let country = faker.address.country();
+      const country = faker.address.country();
       places.push([country, null, null]);
     }
   }
@@ -30,7 +29,7 @@ const generateAllLocations = function () {
 
 
 //  ******************  generates shipping data  ******************
-const generateStartAndEnd = function (daysWeeksMonths) {
+const generateStartAndEnd = (daysWeeksMonths) => {
   let start;
   let end;
 
@@ -44,26 +43,26 @@ const generateStartAndEnd = function (daysWeeksMonths) {
     start = 1;
     end = 2;
   }
-  return {start, end};
+  return { start, end };
 };
 
-const generateAllShipping = function () {
-  let types = ['US', 'international', 'digital', 'US', 'international'];
-  let timeframes = ['days', 'weeks', 'days', 'months', 'days'];
-  let shippingOptions = [];
+const generateAllShipping = () => {
+  const types = ['US', 'international', 'digital', 'US', 'international'];
+  const timeframes = ['days', 'weeks', 'days', 'months', 'days'];
+  const shippingOptions = [];
 
-  for (let i = 0; i < 100; i++) {
-    let type = types[randomNumber(4)];
+  for (let i = 0; i < 100; i += 1) {
+    const type = types[randomNumber(4)];
     let free;
     if (type === 'digital') {
       free = 1; // 'true'
     } else {
       free = randomNumber(1);
-    };
+    }
     let timeframe = timeframes[randomNumber(4)];
-    let startAndEnd = generateStartAndEnd(timeframe);
-    timeframe = `${startAndEnd.start} - ${startAndEnd.end} ${timeframe}`
-    let shipping = [type, free, timeframe];
+    const startAndEnd = generateStartAndEnd(timeframe);
+    timeframe = `${startAndEnd.start} - ${startAndEnd.end} ${timeframe}`;
+    const shipping = [type, free, timeframe];
     shippingOptions.push(shipping);
   }
 
@@ -73,8 +72,8 @@ const generateAllShipping = function () {
 //  ******************  generates item data  ******************
 
 // the first several are required fields - cannot be null
-const generateTitle = function () {
-  let pieces = [];
+const generateTitle = () => {
+  const pieces = [];
   let additional = '';
 
   if (randomNumber(1)) {
@@ -89,93 +88,79 @@ const generateTitle = function () {
   }
 
   let title = [...pieces].join(' ');
-  title = `${title}${additional}`
+  title = `${title}${additional}`;
 
   return title;
 };
 
-const generatePrice = function () {
-  let price = faker.commerce.price();
+const generatePrice = () => {
+  const price = faker.commerce.price();
   return price;
 };
 
-const generateMaterials = function () {
-  let numMaterials = randomNumber(4, 1);
-  let materials = new Set;
-  for (let i = 1; i <= numMaterials; i++) {
-    let newMat = faker.commerce.productMaterial();
+const generateMaterials = () => {
+  const numMaterials = randomNumber(4, 1);
+  const materials = new Set();
+  for (let i = 1; i <= numMaterials; i += 1) {
+    const newMat = faker.commerce.productMaterial();
     materials.add(newMat);
   }
 
   return [...materials].join(', ');
 };
 
-const generateDescription = function () {
-  return faker.lorem.paragraphs();
-};
+const generateDescription = () => faker.lorem.paragraphs();
 
-const generatePolicies = function () {
-  return faker.lorem.paragraphs();
-};
+const generatePolicies = () => faker.lorem.paragraphs();
 
-const generateReturnSynopsis = function () {
-  return faker.lorem.sentence();
-};
+const generateReturnSynopsis = () => faker.lorem.sentence();
 
 // the rest of these fields CAN be null
-const generateDimensions = function () {
+const generateDimensions = () => {
   let dimensions = null;
   if (!randomNumber(3)) {
-    let scale = ['inches' ,'feet'];
-    let length = randomNumber(6, 2);
+    const scale = ['inches', 'feet'];
+    const length = randomNumber(6, 2);
     dimensions = `Length: ${length} ${scale[randomNumber(1)]}`;
     if (!randomNumber(3)) {
-      let width = randomNumber(6, 2);
-      dimensions += `, Width: ${width} ${scale[randomNumber(1)]}`
+      const width = randomNumber(6, 2);
+      dimensions += `, Width: ${width} ${scale[randomNumber(1)]}`;
     }
   }
   return dimensions;
 };
 
-const generateMaxOrderQty = function () {
-  let max_order_qty;
-  if (!randomNumber(3)) {
-    max_order_qty = randomNumber(25, 3);
-  } else {
-    max_order_qty = null;
-  }
-  return max_order_qty;
-};
-
-const generateReturnsCondition = function () {
-  let returns_condition;
+const generateMaxOrderQty = () => {
+  let maxOrderQty = null;
   if (!randomNumber(2)) {
-    returns_condition = faker.lorem.paragraphs();
-  } else {
-    returns_condition = null;
+    maxOrderQty = randomNumber(25, 3);
   }
-  return returns_condition;
+  return maxOrderQty;
 };
 
-const addInventoryCount = function (itemSoFar) {
-  let updatedItem = [...itemSoFar];
+const generateReturnsCondition = () => {
+  let returnsCondition = null;
+  if (!randomNumber(2)) {
+    returnsCondition = faker.lorem.paragraphs();
+  }
+  return returnsCondition;
+};
+
+const getInventoryCount = (maxOrderQty) => {
   let min = 1;
-  // max_order_qty is at index 9 of itemSoFar
-  if (updatedItem[9] !== null) {
-    min = updatedItem[9];
+  if (maxOrderQty !== null) {
+    min = maxOrderQty;
   }
-  updatedItem.push(randomNumber(40, min));
-  return updatedItem;
+  return randomNumber(40, min);
 };
 
-const generateInOtherCarts = function (itemSoFar) {
-  let updatedItem = [...itemSoFar];
+const generateInOtherCarts = (itemSoFar, inventoryCount) => {
+  const updatedItem = [...itemSoFar];
   let inOtherCarts;
   if (faker.random.boolean()) {
     let max = 20;
-    // inventory_count is at index 11 of itemSoFar
-    if (updatedItem[11] !== null) {
-      max = updatedItem[11];
+    if (inventoryCount !== null) {
+      max = inventoryCount;
     }
     inOtherCarts = randomNumber(max, 1);
   } else {
@@ -186,15 +171,15 @@ const generateInOtherCarts = function (itemSoFar) {
 };
 
 // true/false: giftWrap, faqs, bestseller, personalizable, handmade, vintage
-const generateDescriptorFlags = function (itemSoFar) {
-  let updatedItem = [...itemSoFar];
+const generateDescriptorFlags = (itemSoFar) => {
+  const updatedItem = [...itemSoFar];
 
-  let giftWrap = randomNumber(1);
-  let faqs = randomNumber(1);
-  let bestseller = randomNumber(1);;
-  let personalizable = randomNumber(1);;
-  let handmade = randomNumber(1);;
-  let vintage = randomNumber(1);
+  const giftWrap = randomNumber(1);
+  const faqs = randomNumber(1);
+  const bestseller = randomNumber(1);
+  const personalizable = randomNumber(1);
+  const handmade = randomNumber(1);
+  const vintage = randomNumber(1);
 
   updatedItem.push(giftWrap);
   updatedItem.push(faqs);
@@ -206,51 +191,53 @@ const generateDescriptorFlags = function (itemSoFar) {
   return updatedItem;
 };
 
-const generateItemRequiredFields = function () {
-  let result = [];
+const generateItemRequiredFields = () => {
+  const result = [];
 
-  let title = generateTitle();
-  let price = generatePrice();
-  let shipping_id = randomNumber(100, 1);
-  let materials = generateMaterials();
-  let description = generateDescription();
-  let location_id = randomNumber(100, 1);
-  let policies = generatePolicies();
-  let return_synopsis = generateReturnSynopsis();
+  const title = generateTitle();
+  const price = generatePrice();
+  const shippingId = randomNumber(100, 1);
+  const materials = generateMaterials();
+  const description = generateDescription();
+  const locationId = randomNumber(100, 1);
+  const policies = generatePolicies();
+  const returnSynopsis = generateReturnSynopsis();
 
   result.push(title);
   result.push(price);
-  result.push(shipping_id);
+  result.push(shippingId);
   result.push(materials);
   result.push(description);
-  result.push(location_id);
+  result.push(locationId);
   result.push(policies);
-  result.push(return_synopsis);
+  result.push(returnSynopsis);
   return result;
 };
 
-const addOptionals = function (basicItem) {
+const addOptionals = (basicItem) => {
   let item = [...basicItem];
 
   item.push(generateDimensions());
-  item.push(generateMaxOrderQty());
+  const maxOrderQty = generateMaxOrderQty();
+  item.push(maxOrderQty);
   item.push(generateReturnsCondition());
-  item = addInventoryCount(item);
-  item = generateInOtherCarts(item);
+  const inventoryCount = getInventoryCount(maxOrderQty);
+  item.push(inventoryCount);
+  item = generateInOtherCarts(item, inventoryCount);
   item = generateDescriptorFlags(item);
   return item;
 };
 
-const generateItem = function () {
+const generateItem = () => {
   let item = generateItemRequiredFields();
   item = addOptionals(item);
 
   return item;
 };
 
-const generateAllItems = function () {
-  let items = [];
-  for (let i = 1; i <= 100; i++) {
+const generateAllItems = () => {
+  const items = [];
+  for (let i = 1; i <= 100; i += 1) {
     items.push(generateItem());
   }
   return items;
@@ -259,71 +246,70 @@ const generateAllItems = function () {
 
 //  ******************  generates options data  ******************
 
-const getRandomDimensionUnit = function () {
-  let dimensions = ['centimeter', 'inch', 'foot', 'meter'];
-  let index = randomNumber(3);
+const getRandomDimensionUnit = () => {
+  const dimensions = ['centimeter', 'inch', 'foot', 'meter'];
+  const index = randomNumber(3);
   return dimensions[index];
-}
+};
 
-const pluralizeUnit = function (dimension) {
+const pluralizeUnit = (dimension) => {
   if (dimension === 'inch') {
     return 'inches';
-  } else if (dimension === 'foot') {
+  }
+  if (dimension === 'foot') {
     return 'feet';
   }
-  return dimension + 's';
-}
+  return `${dimension}s`;
+};
 
-const makeSizeOption = function () {
+const makeSizeOption = () => {
   let sizeList = [];
   if (!randomNumber(3)) {
     sizeList = ['small', 'medium', 'large'];
   } else {
-    let numSizes = randomNumber(5, 2);
+    const numSizes = randomNumber(5, 2);
     let unitOne = getRandomDimensionUnit();
     let unitTwo = unitOne;
-    let dimensionOne = randomNumber(4, 1);
-    let dimensionTwo = randomNumber(4, 1);
+    const dimensionOne = randomNumber(4, 1);
+    const dimensionTwo = randomNumber(4, 1);
     if (dimensionOne > 1) {
       unitOne = pluralizeUnit(unitOne);
     }
     if (dimensionTwo > 1) {
       unitTwo = pluralizeUnit(unitTwo);
     }
-    for (let i = 0; i < numSizes; i++) {
-      let step = i * 3;
-      sizeList.push(`${dimensionOne + step} ${unitOne} x ${dimensionTwo +  step} ${unitTwo}`);
+    for (let i = 0; i < numSizes; i += 1) {
+      const step = i * 3;
+      sizeList.push(`${dimensionOne + step} ${unitOne} x ${dimensionTwo + step} ${unitTwo}`);
     }
   }
-  return [...sizeList].join(',' );
+  return [...sizeList].join(',');
 };
 
-const makeColorOption = function () {
-  let colors = new Set();
-  let numColors = randomNumber(7, 3);
-  for (let i = 0; i < numColors; i++) {
+const makeColorOption = () => {
+  const colors = new Set();
+  const numColors = randomNumber(7, 3);
+  for (let i = 0; i < numColors; i += 1) {
     colors.add(faker.commerce.color());
   }
   return [...colors].join(',');
 };
 
-const makeHeightOption = function () {
-  let heights = [];
-  let numHeights = randomNumber(6, 3);
-  let unit = getRandomDimensionUnit();
-  let units = pluralizeUnit(unit);
+const makeHeightOption = () => {
+  const heights = [];
+  const numHeights = randomNumber(6, 3);
+  const unit = getRandomDimensionUnit();
+  const units = pluralizeUnit(unit);
   heights.push(`1 ${unit}`);
-  for (let i = 2; i < numHeights; i++) {
+  for (let i = 2; i < numHeights; i += 1) {
     heights.push(`${i} ${units}`);
   }
   return [...heights].join(',');
 };
 
-const makeOrientationOption = function () {
-  return 'horizontal,vertical';
-};
+const makeOrientationOption = () => 'horizontal,vertical';
 
-const generateOneOption = function (type) {
+const generateOneOption = (type) => {
   let result = '';
   if (type === 'size') {
     result = makeSizeOption();
@@ -337,16 +323,16 @@ const generateOneOption = function (type) {
   return result;
 };
 
-const generateOptionsForItem = function () {
-  let results = []
-  let optionTypes = ['size', 'color', 'height', 'orientation'];
-  let numOptions = randomNumber(3);
-  for (let i = 1; i <= numOptions; i++) {
-    let optionTypeIndex = randomNumber(optionTypes.length - 1);
+const generateOptionsForItem = () => {
+  const results = [];
+  const optionTypes = ['size', 'color', 'height', 'orientation'];
+  const numOptions = randomNumber(3);
+  for (let i = 1; i <= numOptions; i += 1) {
+    const optionTypeIndex = randomNumber(optionTypes.length - 1);
 
-    let optionTitle = optionTypes[optionTypeIndex];
-    let optionList = generateOneOption(optionTypes[optionTypeIndex]);
-    let option = [optionTitle, optionList];
+    const optionTitle = optionTypes[optionTypeIndex];
+    const optionList = generateOneOption(optionTypes[optionTypeIndex]);
+    const option = [optionTitle, optionList];
     results.push(option);
 
     optionTypes.splice(optionTypeIndex, 1);
@@ -354,32 +340,29 @@ const generateOptionsForItem = function () {
   return results;
 };
 
-const generateAllOptions = function () {
-  let results = [];
+const generateAllOptions = () => {
+  const results = [];
 
-  for (let i = 0; i < 100; i++) {
-    let item_id = i + 1;
-    let options = generateOptionsForItem();
-    for (let j = 0; j < options.length; j++) {
-      results.push([item_id, ...options[j]]);
+  for (let i = 0; i < 100; i += 1) {
+    const itemId = i + 1;
+    const options = generateOptionsForItem();
+    for (let j = 0; j < options.length; j += 1) {
+      results.push([itemId, ...options[j]]);
     }
-
   }
   return results;
 };
 
 
 //  ******************  generates markdowns data  ******************
-const makeRandomDiscount = function () {
-  let discount = randomNumber(70, 5);
+const makeRandomDiscount = () => {
+  const discount = randomNumber(70, 5);
   return discount;
 };
 
-const makeEndDate = function () {
-  return faker.date.future();
-};
+const makeEndDate = () => faker.date.future();
 
-const generateOneMarkdown = function () {
+const generateOneMarkdown = () => {
   let result = [];
   let discount = null;
   let end = null;
@@ -393,20 +376,20 @@ const generateOneMarkdown = function () {
   return result;
 };
 
-const generateAllMarkdowns = function () {
-  let results = [];
-  let item_id;
+const generateAllMarkdowns = () => {
+  const results = [];
+  let itemId;
 
-  for (let i = 0; i < 100; i++) {
-    item_id = i + 1;
-    let markdown = generateOneMarkdown();
+  for (let i = 0; i < 100; i += 1) {
+    itemId = i + 1;
+    const markdown = generateOneMarkdown();
     if (markdown.length > 0) {
-      results.push([item_id, ...markdown]);
+      results.push([itemId, ...markdown]);
     }
   }
 
   return results;
-}
+};
 
 
 exports.generateAllLocations = generateAllLocations;
