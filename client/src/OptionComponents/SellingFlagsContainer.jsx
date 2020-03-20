@@ -9,7 +9,7 @@ function SellingFlagsContainer() {
       <div>(in other carts icon & note)</div>
     </div>
   );
-};
+}
 
 export default SellingFlagsContainer;
 

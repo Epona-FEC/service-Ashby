@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownContainer from './MarkdownContainer.jsx';
+import MarkdownContainer from './MarkdownContainer';
 
 function CostContainer() {
   return (
@@ -10,7 +10,7 @@ function CostContainer() {
       <MarkdownContainer />
     </div>
   );
-};
+}
 
 export default CostContainer;
 

@@ -7,7 +7,7 @@ function QuantityContainer() {
       <div>(quantity dropdown)</div>
     </div>
   );
-};
+}
 
 export default QuantityContainer;
 

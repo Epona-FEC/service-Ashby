@@ -1,7 +1,7 @@
 import React from 'react';
-import StyleFlagsContainer from './StyleFlagsContainer.jsx';
-import MaterialsContainer from './MaterialsContainer.jsx';
-import DescriptionContainer from './DescriptionContainer.jsx';
+import StyleFlagsContainer from './StyleFlagsContainer';
+import MaterialsContainer from './MaterialsContainer';
+import DescriptionContainer from './DescriptionContainer';
 
 function DetailsContainer() {
   return (
@@ -11,7 +11,7 @@ function DetailsContainer() {
       <DescriptionContainer />
     </div>
   );
-};
+}
 
 export default DetailsContainer;
 
@@ -26,7 +26,8 @@ Details Container
 |
 | Materials Container
 | ---
-| | !material(s) - mini header and large text (if several, does a "more" underlined that shows the rest)
+| | !material(s) - mini header and large text (if several,
+| |       does a "more" underlined that shows the rest)
 | | materials header
 | | ---
 | | | materials list - limit display to one line w/ a click to expand
@@ -36,7 +37,8 @@ Details Container
 | Description Container
 | ---
 | | (dimensions -  mini header and larg text)
-| | !description - mini header with a bit larger text, has "Learn more about this item button" to show the rest
+| | !description - mini header with a bit larger text,
+| |       has "Learn more about this item button" to show the rest
 | | description header
 | | actual description - limit display size
 | | button - opens rest of description

@@ -7,7 +7,7 @@ function ShipSourceContainer() {
       <div>country/state/city</div>
     </div>
   );
-};
+}
 
 export default ShipSourceContainer;
 

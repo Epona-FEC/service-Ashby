@@ -7,7 +7,7 @@ function PersonalizeContainer() {
       <div>(text area for personalization)</div>
     </div>
   );
-};
+}
 
 export default PersonalizeContainer;
 

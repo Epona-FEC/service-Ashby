@@ -9,7 +9,7 @@ function PoliciesContainer() {
       <div>(FAQs - button just like shipping)</div>
     </div>
   );
-};
+}
 
 export default PoliciesContainer;
 

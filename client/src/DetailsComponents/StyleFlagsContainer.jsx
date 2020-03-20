@@ -7,7 +7,7 @@ function StyleFlagsContainer() {
       <div>(vintage icon and label)</div>
     </div>
   );
-};
+}
 
 export default StyleFlagsContainer;
 

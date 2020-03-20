@@ -7,7 +7,7 @@ function TimeframeContainer() {
       <div>timeframe</div>
     </div>
   );
-};
+}
 
 export default TimeframeContainer;
 

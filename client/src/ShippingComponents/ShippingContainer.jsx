@@ -1,6 +1,6 @@
 import React from 'react';
-import TimeframeContainer from './TimeframeContainer.jsx';
-import ShipSourceContainer from './ShipSourceContainer.jsx';
+import TimeframeContainer from './TimeframeContainer';
+import ShipSourceContainer from './ShipSourceContainer';
 
 function ShippingContainer() {
   return (
@@ -9,11 +9,11 @@ function ShippingContainer() {
       <ShipSourceContainer />
       <div>(cost to ship)</div>
       <div>(shipping cost)</div>
-      <div>(Get shipping cost button) --> drops to make shipping module</div>
+      <div>(Get shipping cost button) -- drops to make shipping module</div>
       <div>(returns blurb)</div>
     </div>
   );
-};
+}
 
 export default ShippingContainer;
 

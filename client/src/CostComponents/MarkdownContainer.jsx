@@ -7,7 +7,7 @@ function MarkdownContainer() {
       <div>(sales ending - time remaining)</div>
     </div>
   );
-};
+}
 
 export default MarkdownContainer;
 

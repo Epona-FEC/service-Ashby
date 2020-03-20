@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(output),
     filename: 'bundle.js'
   },
+  resolve: {extensions: ['.js', '.jsx']},
   module: {
     rules: [
       {
@@ -29,5 +30,5 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
 }

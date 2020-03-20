@@ -1,37 +1,32 @@
+/* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CostContainer from './CostComponents/CostContainer.jsx';
-import OptionsContainer from './OptionComponents/OptionsContainer.jsx';
-import DetailsContainer from './DetailsComponents/DetailsContainer.jsx';
-import ShippingContainer from './ShippingComponents/ShippingContainer.jsx';
-import PoliciesContainer from './PoliciesComponents/PoliciesContainer.jsx';
+import CostContainer from './CostComponents/CostContainer';
+import OptionsContainer from './OptionComponents/OptionsContainer';
+import DetailsContainer from './DetailsComponents/DetailsContainer';
+import ShippingContainer from './ShippingComponents/ShippingContainer';
+import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
-class ItemDetails extends React.Component {
-  constructor () {
-    super ();
-  };
+// class ItemDetails extends React.Component {
+//   constructor () {
+//     super ();
 
+function ItemDetails() {
+  // render() {
+  return (
+    <div>
+      <h1>item name goes here</h1>
+      <CostContainer />
+      <OptionsContainer />
+      <DetailsContainer />
+      <ShippingContainer />
+      <PoliciesContainer />
+    </div>
+  );
+  // };
+}
 
-  render() {
-    return (
-      <div>
-        <h1>item name goes here</h1>
-        <CostContainer />
-        <OptionsContainer />
-        <DetailsContainer />
-        <ShippingContainer />
-        <PoliciesContainer />
-      </div>
-    );
-  };
-};
-
-
-ReactDOM.render(
-  <ItemDetails />,
-  document.getElementById('item-details')
-);
-
+ReactDOM.render(<ItemDetails />, document.getElementById('item-details'));
 
 /*
 visual on ideas for component layout
@@ -98,7 +93,8 @@ Details Container
 |
 | Materials Container
 | ---
-| | !material(s) - mini header and large text (if several, does a "more" underlined that shows the rest)
+| | !material(s) - mini header and large text
+|  |               (if several, does a "more" underlined that shows the rest)
 | | materials header
 | | ---
 | | | materials list - limit display to one line w/ a click to expand
@@ -108,7 +104,8 @@ Details Container
 | Description Container
 | ---
 | | (dimensions -  mini header and larg text)
-| | !description - mini header with a bit larger text, has "Learn more about this item button" to show the rest
+| | !description - mini header with a bit larger text,
+| |             has "Learn more about this item button" to show the rest
 | | description header
 | | actual description - limit display size
 | | button - opens rest of description
