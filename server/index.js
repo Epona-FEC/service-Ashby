@@ -12,7 +12,7 @@ app.use(express.static('client/dist'));
 
 // ********************  data fetching  ********************
 
-const fetchAllItems = function (callback) {
+const fetchAllItems = function fetchAll(callback) {
   data.allItems((error, results) => {
     if (error) {
       callback('DB ERROR');
@@ -22,7 +22,7 @@ const fetchAllItems = function (callback) {
   });
 };
 
-const fetchOneItem = function (itemId, callback) {
+const fetchOneItem = function fetchOne(itemId, callback) {
   data.oneItem(itemId, (error, results) => {
     if (error) {
       callback('DB ERROR');
@@ -32,8 +32,8 @@ const fetchOneItem = function (itemId, callback) {
   });
 };
 
-const getShippingFee = function () {
-  let fee = '6.99';
+const getShippingFee = function getShippingFee() {
+  const fee = '6.99';
   return fee;
 };
 
@@ -43,7 +43,6 @@ const getShippingFee = function () {
 app.get('/items', (req, res) => {
   fetchAllItems((error, results) => {
     if (error) {
-      console.error(error);
       res.status(404).send(error);
     } else {
       res.status(200).send(results);
@@ -54,13 +53,12 @@ app.get('/items', (req, res) => {
 // curl -i http://localhost:3004/items
 
 app.get('/item/:itemId', (req, res) => {
-  let itemId = req.params.itemId;
+  const { itemId } = req.params;
   if ((itemId < 1) || (itemId > 100)) {
     res.status(404).send('item number out of range');
   } else {
     fetchOneItem(itemId, (error, results) => {
       if (error) {
-        console.error(error);
         res.status(404).send(error);
       } else {
         res.status(200).send(results);
@@ -72,8 +70,7 @@ app.get('/item/:itemId', (req, res) => {
 // curl -i http://localhost:3004/item/5
 
 app.get('/shipping/:itemId', (req, res) => {
-  let itemId = req.params.itemId;
-  let fee = getShippingFee();
+  const fee = getShippingFee();
   res.status(200).send(fee);
 });
 // manual test with:
@@ -81,5 +78,5 @@ app.get('/shipping/:itemId', (req, res) => {
 
 
 app.listen(port, () => {
-  console.log('Express server for item detail now listening on port 3004');
+  console.log(`Express server for item detail now listening on port ${port}`);
 });
