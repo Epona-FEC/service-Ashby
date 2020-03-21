@@ -13,12 +13,14 @@ describe('basic test of testing with jest', () => {
   });
 });
 
-// describe('markdown container', function() {
-  // test('should have class"markdown"', () => {
-  //   const markdownContainer = shallow(<MarkdownContainer />);
 
-  //   expect(markdownContainer.contains(<div className="markdown" />)).to.equal(true);
-  // })
+describe('markdown container', function() {
+  test('component should exist', () => {
+    const markdown = shallow(<MarkdownContainer />);
+
+    expect(markdown.exists());
+  })
+});
 
   // it('should mount in DOM'), function() {
   //   expect(mount(<ItemDetails />).find('#item-info').length).toBe(1);
@@ -29,5 +31,3 @@ describe('basic test of testing with jest', () => {
   // }
 
   // );
-
-// });
