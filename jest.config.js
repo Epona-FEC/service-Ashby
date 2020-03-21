@@ -2,6 +2,8 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
+  verbose: true,
+  setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 

@@ -14,7 +14,7 @@ import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 function ItemDetails() {
   // render() {
   return (
-    <div>
+    <div id="item-info">
       <h1>item name goes here</h1>
       <CostContainer />
       <OptionsContainer />
@@ -27,6 +27,8 @@ function ItemDetails() {
 }
 
 ReactDOM.render(<ItemDetails />, document.getElementById('item-details'));
+
+export default ItemDetails;
 
 /*
 visual on ideas for component layout
