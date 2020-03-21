@@ -3,7 +3,7 @@ import MarkdownContainer from './MarkdownContainer';
 
 function CostContainer() {
   return (
-    <div>
+    <div className="cost-container">
       <div>(possible bestseller tag)</div>
       <div>Price (might be a markdown pice)</div>
       <div>(goes to right of price, possible full price if on markdown)</div>

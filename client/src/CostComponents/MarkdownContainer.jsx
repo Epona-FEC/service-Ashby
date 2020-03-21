@@ -2,7 +2,7 @@ import React from 'react';
 
 function MarkdownContainer() {
   return (
-    <div className="markdown">
+    <div className="markdown-container">
       <div>(savings)</div>
       <div>(sales ending - time remaining)</div>
     </div>
