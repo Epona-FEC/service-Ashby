@@ -1,19 +1,20 @@
 import React from 'react';
-import ChoicesContainer from './ChoicesContainer.jsx';
-import PersonalizeContainer from './PersonalizeContainer.jsx';
-import QuantityContainer from './QuantityContainer.jsx';
-import SellingFlagsContainer from './SellingFlagsContainer.jsx';
+import ChoicesContainer from './ChoicesContainer';
+import PersonalizeContainer from './PersonalizeContainer';
+import QuantityContainer from './QuantityContainer';
+import SellingFlagsContainer from './SellingFlagsContainer';
 
 function OptionsContainer() {
   return (
-    <div>
+    <div className="options-container">
       <ChoicesContainer />
       <PersonalizeContainer />
       <QuantityContainer />
-      <button>Add to Cart</button>
+      <div>Button: Add to Cart</div>
       <SellingFlagsContainer />
-    </div>);
-};
+    </div>
+  );
+}
 
 export default OptionsContainer;
 

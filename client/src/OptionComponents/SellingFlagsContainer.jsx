@@ -2,14 +2,14 @@ import React from 'react';
 
 function SellingFlagsContainer() {
   return (
-    <div>
+    <div className="selling-flags-container">
       <div>(digital download)</div>
       <div>(free shipping icon & note)</div>
       <div>(low stock icon & note)</div>
       <div>(in other carts icon & note)</div>
     </div>
   );
-};
+}
 
 export default SellingFlagsContainer;
 

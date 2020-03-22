@@ -2,12 +2,12 @@ import React from 'react';
 
 function QuantityContainer() {
   return (
-    <div>
+    <div className="quantity-container">
       <div>(quantity label)</div>
       <div>(quantity dropdown)</div>
     </div>
   );
-};
+}
 
 export default QuantityContainer;
 
