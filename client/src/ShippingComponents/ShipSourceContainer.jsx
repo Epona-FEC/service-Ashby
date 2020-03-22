@@ -2,7 +2,7 @@ import React from 'react';
 
 function ShipSourceContainer() {
   return (
-    <div>
+    <div className="ship-source-container">
       <div>From</div>
       <div>country/state/city</div>
     </div>

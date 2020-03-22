@@ -4,7 +4,7 @@ import ShipSourceContainer from './ShipSourceContainer';
 
 function ShippingContainer() {
   return (
-    <div>
+    <div className="shipping-container">
       <TimeframeContainer />
       <ShipSourceContainer />
       <div>(cost to ship)</div>

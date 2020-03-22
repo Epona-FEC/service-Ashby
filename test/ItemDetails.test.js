@@ -2,15 +2,19 @@ import React from 'react';
 import { shallow, mount, reader } from 'enzyme';
 import MarkdownContainer from '../client/src/CostComponents/MarkdownContainer.jsx';
 import CostContainer from '../client/src/CostComponents/CostContainer.jsx';
-import StyleFlagsContainer from '../client/src/DetailsComponents/StyleFlagsContainer.jsx'
-import MaterialsContainer from '../client/src/DetailsComponents/MaterialsContainer.jsx'
-import DescriptionContainer from '../client/src/DetailsComponents/DescriptionContainer.jsx'
-import DetailsContainer from '../client/src/DetailsComponents/DetailsContainer.jsx'
-import ChoicesContainer from '../client/src/OptionComponents/ChoicesContainer.jsx'
-import PersonalizeContainer from '../client/src/OptionComponents/PersonalizeContainer.jsx'
-import QuantityContainer from '../client/src/OptionComponents/QuantityContainer.jsx'
-import SellingFlagsContainer from '../client/src/OptionComponents/SellingFlagsContainer.jsx'
-import OptionsContainer from '../client/src/OptionComponents/OptionsContainer.jsx'
+import StyleFlagsContainer from '../client/src/DetailsComponents/StyleFlagsContainer.jsx';
+import MaterialsContainer from '../client/src/DetailsComponents/MaterialsContainer.jsx';
+import DescriptionContainer from '../client/src/DetailsComponents/DescriptionContainer.jsx';
+import DetailsContainer from '../client/src/DetailsComponents/DetailsContainer.jsx';
+import ChoicesContainer from '../client/src/OptionComponents/ChoicesContainer.jsx';
+import PersonalizeContainer from '../client/src/OptionComponents/PersonalizeContainer.jsx';
+import QuantityContainer from '../client/src/OptionComponents/QuantityContainer.jsx';
+import SellingFlagsContainer from '../client/src/OptionComponents/SellingFlagsContainer.jsx';
+import OptionsContainer from '../client/src/OptionComponents/OptionsContainer.jsx';
+import PoliciesContainer from '../client/src//PoliciesComponents/PoliciesContainer.jsx';
+import ShippingContainer from '../client/src/ShippingComponents/ShippingContainer.jsx'
+import TimeframeContainer from '../client/src/ShippingComponents/TimeframeContainer.jsx'
+import ShipSourceContainer from '../client/src/ShippingComponents/ShipSourceContainer.jsx'
 // import ItemDetails from '../client/src/index.jsx';
 
 describe('basic test of testing with jest', () => {
@@ -187,6 +191,59 @@ describe('OptionsComponents', () => {
     });
     test('should have SellingFlagsContainer child', () => {
       expect(children.containsMatchingElement(<SellingFlagsContainer />)).toBe(true);
+    });
+  });
+});
+
+describe('PoliciesContainer', () => {
+  const policies = shallow(<PoliciesContainer />);
+  test('node should exist', () => {
+    expect(policies.exists()).toBe(true);
+  });
+  test('should have "policies-container" class', () => {
+    expect(policies.exists('.policies-container')).toBe(true);
+  });
+});
+
+describe('ShippingComponents', () => {
+
+  describe('TimeframeContainer', () => {
+    const timeframe = shallow(<TimeframeContainer />);
+
+    test('node should exist', () => {
+      expect(timeframe.exists()).toBe(true);
+    });
+    test('should have "timeframe-container" class', () => {
+      expect(timeframe.exists('.timeframe-container')).toBe(true);
+    })
+  });
+
+  describe('ShipSourceContainer', () => {
+    const shipSource = shallow(<ShipSourceContainer />);
+
+    test('node should exist', () => {
+      expect(shipSource.exists()).toBe(true);
+    });
+    test('should have "ship-source-container" class', () => {
+      expect(shipSource.exists('.ship-source-container')).toBe(true);
+    })
+  });
+
+  describe('ShippingContainer', () => {
+    const shipping = shallow(<ShippingContainer />);
+    const children = shipping.children();
+
+    test('node should exist', () => {
+      expect(shipping.exists()).toBe(true);
+    });
+    test('should have "shipping-container" class', () => {
+      expect(shipping.exists('.shipping-container')).toBe(true);
+    })
+    test('should have TimeframeContainer child', () => {
+      expect(children.containsMatchingElement(<TimeframeContainer />)).toBe(true);
+    });
+    test('should have ShipSourceContainer child', () => {
+      expect(children.containsMatchingElement(<ShipSourceContainer />)).toBe(true);
     });
   });
 });

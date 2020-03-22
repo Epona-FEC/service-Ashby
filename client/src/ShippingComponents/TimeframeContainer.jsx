@@ -2,7 +2,7 @@ import React from 'react';
 
 function TimeframeContainer() {
   return (
-    <div>
+    <div className="timeframe-container">
       <div>Ready to Ship in</div>
       <div>timeframe</div>
     </div>
