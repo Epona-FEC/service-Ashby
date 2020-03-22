@@ -15,7 +15,7 @@ import PoliciesContainer from '../client/src//PoliciesComponents/PoliciesContain
 import ShippingContainer from '../client/src/ShippingComponents/ShippingContainer.jsx'
 import TimeframeContainer from '../client/src/ShippingComponents/TimeframeContainer.jsx'
 import ShipSourceContainer from '../client/src/ShippingComponents/ShipSourceContainer.jsx'
-// import ItemDetails from '../client/src/index.jsx';
+import ItemDetails from '../client/src/ItemDetails.jsx';
 
 describe('basic test of testing with jest', () => {
   test('truth sanity', () => {
@@ -36,10 +36,10 @@ describe('Cost Components', () => {
       expect(markdown.exists()).toBe(true);
     });
     test('should not have an unused class', () => {
-      expect(markdown.exists('.blah')).toBe(false);
+      expect(markdown.hasClass('blah')).toBe(false);
     });
     test('should have "markdown-container" class', () => {
-      expect(markdown.exists('.markdown-container')).toBe(true);
+      expect(markdown.hasClass('markdown-container')).toBe(true);
     });
   });
 
@@ -50,10 +50,10 @@ describe('Cost Components', () => {
       expect(cost.exists()).toBe(true);
     });
     test('should not have an unused class', () => {
-      expect(cost.exists('.blah')).toBe(false);
+      expect(cost.hasClass('blah')).toBe(false);
     });
     test('should have "cost-container" class', () => {
-      expect(cost.exists('.cost-container')).toBe(true);
+      expect(cost.hasClass('cost-container')).toBe(true);
     });
     test('should not have nonexistant child nodes', () => {
       expect(cost.children('Nonexistant')).toHaveLength(0);
@@ -73,7 +73,7 @@ describe ('details components', () => {
       expect(styleFlags.exists()).toBe(true);
     });
     test('should have "style-flags-container" class', () => {
-      expect(styleFlags.exists('.style-flags-container')).toBe(true);
+      expect(styleFlags.hasClass('style-flags-container')).toBe(true);
     });
   });
 
@@ -84,7 +84,7 @@ describe ('details components', () => {
       expect(materials.exists()).toBe(true);
     });
     test('should have "materials-container" class', () => {
-      expect(materials.exists('.materials-container')).toBe(true);
+      expect(materials.hasClass('materials-container')).toBe(true);
     });
   });
 
@@ -95,7 +95,7 @@ describe ('details components', () => {
       expect(description.exists()).toBe(true);
     });
     test('should have "description-container" class', () => {
-      expect(description.exists('.description-container')).toBe(true);
+      expect(description.hasClass('description-container')).toBe(true);
     });
   });
 
@@ -107,7 +107,7 @@ describe ('details components', () => {
       expect(details.exists()).toBe(true);
     });
     test('should have "details-container" class', () => {
-      expect(details.exists('.details-container')).toBe(true);
+      expect(details.hasClass('details-container')).toBe(true);
     });
     test('should have three children', () => {
       expect(children).toHaveLength(3);
@@ -133,7 +133,7 @@ describe('OptionsComponents', () => {
       expect(choices.exists()).toBe(true);
     })
     test('should have "choices-container" class', () => {
-      expect(choices.exists('.choices-container')).toBe(true);
+      expect(choices.hasClass('choices-container')).toBe(true);
     });
   });
 
@@ -143,8 +143,8 @@ describe('OptionsComponents', () => {
     test('node should exist', () => {
       expect(personalize.exists()).toBe(true);
     });
-    test('should have "personalization" class', () => {
-      expect(personalize.exists('.personalization')).toBe(true);
+    test('should have "personalization-container" class', () => {
+      expect(personalize.hasClass('personalization-container')).toBe(true);
     });
   });
 
@@ -155,7 +155,7 @@ describe('OptionsComponents', () => {
       expect(quantity.exists()).toBe(true);
     });
     test('should have "quantity-container" class', () => {
-      expect(quantity.exists('.quantity-container')).toBe(true);
+      expect(quantity.hasClass('quantity-container')).toBe(true);
     });
   });
 
@@ -166,7 +166,7 @@ describe('OptionsComponents', () => {
       expect(sellingFlags.exists()).toBe(true);
     });
     test('should have "selling-flags-container" class', () => {
-      expect(sellingFlags.exists('.selling-flags-container')).toBe(true);
+      expect(sellingFlags.hasClass('selling-flags-container')).toBe(true);
     });
   });
 
@@ -178,7 +178,7 @@ describe('OptionsComponents', () => {
       expect(options.exists()).toBe(true);
     });
     test('should have "options-container" class', () => {
-      expect(options.exists('.options-container')).toBe(true);
+      expect(options.hasClass('options-container')).toBe(true);
     });
     test('should have ChoicesContainer child', () => {
       expect(children.containsMatchingElement(<ChoicesContainer />)).toBe(true);
@@ -201,7 +201,7 @@ describe('PoliciesContainer', () => {
     expect(policies.exists()).toBe(true);
   });
   test('should have "policies-container" class', () => {
-    expect(policies.exists('.policies-container')).toBe(true);
+    expect(policies.hasClass('policies-container')).toBe(true);
   });
 });
 
@@ -214,7 +214,7 @@ describe('ShippingComponents', () => {
       expect(timeframe.exists()).toBe(true);
     });
     test('should have "timeframe-container" class', () => {
-      expect(timeframe.exists('.timeframe-container')).toBe(true);
+      expect(timeframe.hasClass('timeframe-container')).toBe(true);
     })
   });
 
@@ -225,7 +225,7 @@ describe('ShippingComponents', () => {
       expect(shipSource.exists()).toBe(true);
     });
     test('should have "ship-source-container" class', () => {
-      expect(shipSource.exists('.ship-source-container')).toBe(true);
+      expect(shipSource.hasClass('ship-source-container')).toBe(true);
     })
   });
 
@@ -237,7 +237,7 @@ describe('ShippingComponents', () => {
       expect(shipping.exists()).toBe(true);
     });
     test('should have "shipping-container" class', () => {
-      expect(shipping.exists('.shipping-container')).toBe(true);
+      expect(shipping.hasClass('shipping-container')).toBe(true);
     })
     test('should have TimeframeContainer child', () => {
       expect(children.containsMatchingElement(<TimeframeContainer />)).toBe(true);
@@ -248,6 +248,42 @@ describe('ShippingComponents', () => {
   });
 });
 
+describe('ItemDetails overall container', () => {
+  const itemDetails = shallow(<ItemDetails />);
+  const children = itemDetails.children();
+
+  test('node should exist', () => {
+    expect(itemDetails.exists()).toBe(true);
+  });
+
+  test('should have "item-details" class', () => {
+    expect(itemDetails.hasClass('item-details')).toBe(true);
+  })
+
+  test('should have an h1 item-name elements', () => {
+    expect(itemDetails.find('h1').hasClass('item-name')).toBe(true);
+  });
+
+  test('should have CostContainer child', () => {
+    expect(children.containsMatchingElement(<CostContainer />)).toBe(true);
+  });
+
+  test('should have OptionsContainer child', () => {
+    expect(children.containsMatchingElement(<OptionsContainer />)).toBe(true);
+  });
+
+  test('should have DetailsContainer child', () => {
+    expect(children.containsMatchingElement(<DetailsContainer />)).toBe(true);
+  });
+
+  test('should have ShippingContainer child', () => {
+    expect(children.containsMatchingElement(<ShippingContainer />)).toBe(true);
+  });
+
+  test('should have PoliciesContainer child', () => {
+    expect(children.containsMatchingElement(<PoliciesContainer />)).toBe(true);
+  });
+});
 
   // it('should mount in DOM'), function() {
   //   expect(mount(<ItemDetails />).find('#item-info').length).toBe(1);

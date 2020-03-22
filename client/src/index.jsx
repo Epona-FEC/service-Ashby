@@ -1,34 +1,9 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CostContainer from './CostComponents/CostContainer';
-import OptionsContainer from './OptionComponents/OptionsContainer';
-import DetailsContainer from './DetailsComponents/DetailsContainer';
-import ShippingContainer from './ShippingComponents/ShippingContainer';
-import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
+import ItemDetails from './ItemDetails';
 
-// class ItemDetails extends React.Component {
-//   constructor () {
-//     super ();
-
-function ItemDetails() {
-  // render() {
-  return (
-    <div id="item-info">
-      <h1>item name goes here</h1>
-      <CostContainer />
-      <OptionsContainer />
-      <DetailsContainer />
-      <ShippingContainer />
-      <PoliciesContainer />
-    </div>
-  );
-  // };
-}
-
-ReactDOM.render(<ItemDetails />, document.getElementById('item-details'));
-
-export default ItemDetails;
+ReactDOM.render(<ItemDetails />, document.getElementById('item-info'));
 
 /*
 visual on ideas for component layout

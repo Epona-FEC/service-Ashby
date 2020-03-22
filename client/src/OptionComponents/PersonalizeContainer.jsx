@@ -2,7 +2,7 @@ import React from 'react';
 
 function PersonalizeContainer() {
   return (
-    <div className="personalization">
+    <div className="personalization-container">
       <div>(Personalizaton:)</div>
       <div>(text area for personalization)</div>
     </div>
