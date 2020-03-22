@@ -5,7 +5,7 @@ import DescriptionContainer from './DescriptionContainer';
 
 function DetailsContainer() {
   return (
-    <div>
+    <div className="details-container">
       <StyleFlagsContainer />
       <MaterialsContainer />
       <DescriptionContainer />

@@ -2,7 +2,7 @@ import React from 'react';
 
 function DescriptionContainer() {
   return (
-    <div>
+    <div className="description-container">
       <div>(dimensions header)</div>
       <div>(dimensions dropdown)</div>
       <div>Description</div>

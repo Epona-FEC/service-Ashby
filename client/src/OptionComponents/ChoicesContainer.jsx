@@ -2,7 +2,7 @@ import React from 'react';
 
 function ChoicesContainer() {
   return (
-    <div>
+    <div className="choices-container">
       <div>(option title) ,-- there may be 0 to 3 of option title/dropdowns</div>
       <div>(option dropdown  )</div>
     </div>

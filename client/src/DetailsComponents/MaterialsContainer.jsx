@@ -2,7 +2,7 @@ import React from 'react';
 
 function MaterialsContainer() {
   return (
-    <div>
+    <div className="materials-container">
       <div>Materials</div>
       <div>materials list</div>
     </div>

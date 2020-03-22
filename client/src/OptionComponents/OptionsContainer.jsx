@@ -6,7 +6,7 @@ import SellingFlagsContainer from './SellingFlagsContainer';
 
 function OptionsContainer() {
   return (
-    <div>
+    <div className="options-container">
       <ChoicesContainer />
       <PersonalizeContainer />
       <QuantityContainer />
