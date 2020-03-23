@@ -18,9 +18,7 @@ function getItem(callback) {
 }
 
 function getCostData(data) {
-  // console.log('get cost data from', data);
   const itemDetails = data.itemDetails[0];
-  // console.log('item details', itemDetails);
   const markdowns = data.markdowns[0];
   let discount;
   let endDate;
@@ -31,8 +29,6 @@ function getCostData(data) {
     discount = markdowns.discount;
     endDate = markdowns.end_date;
   }
-  // console.log('item details', itemDetails);
-  // console.log('markdowns', markdowns);
   const { id } = itemDetails;
   const { bestseller } = itemDetails;
   const { price } = itemDetails;
@@ -43,7 +39,8 @@ function getCostData(data) {
   return result;
 }
 
-function getDetailsData({ itemDetails }) {
+function getDetailsData(data) {
+  const itemDetails = data.itemDetails[0];
   const { id } = itemDetails;
   const { handmade } = itemDetails;
   const { vintage } = itemDetails;
@@ -53,6 +50,7 @@ function getDetailsData({ itemDetails }) {
   const result = {
     id, handmade, vintage, materials, dimensions, description,
   };
+  console.log(result);
   /*
 id
 handmade
@@ -64,9 +62,10 @@ description
   return result;
 }
 
-function getOptionData({ itemDetails, itemOptions }) {
+function getOptionData(data) {
+  const itemDetails = data.itemDetails[0];
   const { id } = itemDetails;
-  const options = itemOptions;
+  const options = data.itemOptions;
   const { personalizable } = itemDetails;
   const maxOrderQty = itemDetails.max_order_qty;
   const inventoryCount = itemDetails.inventory_count;
@@ -76,6 +75,8 @@ function getOptionData({ itemDetails, itemOptions }) {
   const result = {
     id, options, personalizable, maxOrderQty, inventoryCount, inOtherCarts, type, free,
   };
+  console.log(result);
+
   /*
 id
 options - array of 0 to 3, each with title and string list
@@ -91,7 +92,8 @@ free --> shipping
   return result;
 }
 
-function getPoliciesData({ itemDetails }) {
+function getPoliciesData(data) {
+  const itemDetails = data.itemDetails[0];
   const { id } = itemDetails;
   const { policies } = itemDetails;
   const returnsCondition = itemDetails.returns_condition;
@@ -100,7 +102,10 @@ function getPoliciesData({ itemDetails }) {
   const result = {
     id, policies, returnsCondition, giftWrap, faqs,
   };
+  console.log(result);
+
   /*
+
 id
 policies
 returns_condition
@@ -110,7 +115,8 @@ faqs
   return result;
 }
 
-function getShippingData({ itemDetails }) {
+function getShippingData(data) {
+  const itemDetails = data.itemDetails[0];
   const { id } = itemDetails;
   const shipType = itemDetails.type;
   const freeShip = itemDetails.free;
@@ -121,6 +127,8 @@ function getShippingData({ itemDetails }) {
   const result = {
     id, shipType, freeShip, timeframe, country, state, city,
   };
+  console.log(result);
+
   /*
 id
 type,   --last three refer to shipping
