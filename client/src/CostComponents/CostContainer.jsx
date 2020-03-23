@@ -26,10 +26,10 @@ function CostContainer({ costData }) {
         $
         {currPrice}
       </div>
-      {discount
+      {!!discount
         && <div className="original-price">{price}</div>}
       {/* will go to right of discounted price */}
-      {discount
+      {!!discount
         && <MarkdownContainer savings={priceDiff} ending={endDate} />}
     </div>
   );

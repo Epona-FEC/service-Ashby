@@ -7,7 +7,7 @@ import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
 function getItem(callback) {
-  return axios.get('/item/3')
+  return axios.get('/item/5')
     .then((response) => {
       console.log('data fetched');
       callback(null, response);
@@ -22,13 +22,20 @@ function getCostData(data) {
   const itemDetails = data.itemDetails[0];
   // console.log('item details', itemDetails);
   const markdowns = data.markdowns[0];
+  let discount;
+  let endDate;
+  if (!markdowns) {
+    discount = 0;
+    endDate = '';
+  } else {
+    discount = markdowns.discount;
+    endDate = markdowns.end_date;
+  }
   // console.log('item details', itemDetails);
   // console.log('markdowns', markdowns);
   const { id } = itemDetails;
   const { bestseller } = itemDetails;
   const { price } = itemDetails;
-  const { discount } = markdowns;
-  const endDate = markdowns.end_date;
   const result = {
     id, bestseller, price, discount, endDate,
   };
