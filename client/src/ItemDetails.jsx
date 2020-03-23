@@ -7,9 +7,8 @@ import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
 function getItem(callback) {
-  return axios.get('/item/5')
+  return axios.get('/item/3')
     .then((response) => {
-      console.log('data fetched');
       callback(null, response);
     })
     .catch((error) => {
@@ -50,7 +49,6 @@ function getDetailsData(data) {
   const result = {
     id, handmade, vintage, materials, dimensions, description,
   };
-  console.log(result);
   /*
 id
 handmade
@@ -62,7 +60,7 @@ description
   return result;
 }
 
-function getOptionData(data) {
+function getOptionsData(data) {
   const itemDetails = data.itemDetails[0];
   const { id } = itemDetails;
   const options = data.itemOptions;
@@ -164,20 +162,20 @@ class ItemDetails extends React.Component {
   }
 
   updateItem(data) {
-    console.log('data fetched:', data);
     const costData = getCostData(data);
-    console.log('cost data put together:', costData);
-    const optionData = getOptionData(data);
+    const optionsData = getOptionsData(data);
+    console.log('options data gathered is', optionsData);
     const detailsData = getDetailsData(data);
     const shippingData = getShippingData(data);
     const policiesData = getPoliciesData(data);
     this.setState({
       cost: costData,
-      options: optionData,
+      options: optionsData,
       details: detailsData,
       shipping: shippingData,
       policies: policiesData,
     });
+    console.log('options data in state is', this.state.options);
   }
 
   // function ItemDetails() {
@@ -185,7 +183,7 @@ class ItemDetails extends React.Component {
     const {
       cost, options, details, shipping, policies,
     } = this.state;
-    console.log('just before render, cost data is', cost);
+    console.log('just before render, options data is', options);
     return (
       <div className="item-details">
         <h1 className="item-name">item name goes here</h1>
