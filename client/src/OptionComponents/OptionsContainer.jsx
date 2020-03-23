@@ -17,17 +17,14 @@ function OptionsContainer({ optionsData }) {
     free,
   } = optionsData;
   const areOptions = (options && options.length > 0);
-  // console.log('number of options:', options.length, 'areOptions is', areOptions);
-  console.log('in options container, options is:', options);
   return (
     <div className="options-container">
-      {/* <ChoicesContainer option={options[0]} />  ---> making errors pre-data */}
       {areOptions
-        // && <ChoicesContainer option={options[0]} /> } --> this will finally put data through
         && options.map(({ title, list }) => (
           <ChoicesContainer key={title} title={title} list={list} />
         ))}
-      <PersonalizeContainer />
+      {!!personalizable
+        && <PersonalizeContainer />}
       <QuantityContainer />
       <div>Button: Add to Cart</div>
       <SellingFlagsContainer />

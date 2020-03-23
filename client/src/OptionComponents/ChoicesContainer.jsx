@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 function ChoicesContainer({ title, list }) {
   const listItems = list.split(',');
-  console.log(listItems);
   return (
     <div className="choices-container">
-      {/* <div>(option title) ,-- there may be 0 to 3 of option title/dropdowns</div> */}
-      <label htmlFor={title} className="option-title">{title}</label>
+      <label htmlFor={title} className="choice-title">{title}</label>
       <select id={title}>
-        {listItems.map((item) => <option key={item} value={item}>{item}</option>)}
+        {listItems.map((item) => (
+          <option className="choice-item" key={item} value={item}>{item}</option>))}
       </select>
     </div>
   );
@@ -18,10 +17,6 @@ function ChoicesContainer({ title, list }) {
 ChoicesContainer.propTypes = {
   title: PropTypes.string.isRequired,
   list: PropTypes.string.isRequired,
-  // option: PropTypes.shape({
-  //   title: PropTypes.string,
-  //   list: PropTypes.string,
-  // }).isRequired,
 };
 
 export default ChoicesContainer;

@@ -175,7 +175,6 @@ class ItemDetails extends React.Component {
       shipping: shippingData,
       policies: policiesData,
     });
-    console.log('options data in state is', this.state.options);
   }
 
   // function ItemDetails() {

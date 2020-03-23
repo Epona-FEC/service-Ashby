@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MarkdownContainer from './MarkdownContainer';
 
-/*
-id
-bestseller
-price
-discount
-endDate
-*/
 function CostContainer({ costData }) {
   const {
     bestseller, price, discount, endDate,

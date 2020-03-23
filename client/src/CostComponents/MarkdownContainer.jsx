@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 function MarkdownContainer({ savings, ending }) {
   return (
     <div className="markdown-container">
-      <div>
+      <div className="savings">
         savings: $
         {savings}
       </div>
-      <div>
+      <div className="sale-ending">
         sale ending:
         {ending}
       </div>
