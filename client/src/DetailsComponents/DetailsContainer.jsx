@@ -8,13 +8,12 @@ function DetailsContainer({ detailsData }) {
   const {
     handmade, vintage, materials, dimensions, description,
   } = detailsData;
-  console.log('in details container', detailsData);
   return (
     <div className="details-container">
       {(!!handmade || !!vintage)
         && <StyleFlagsContainer handmade={handmade} vintage={vintage} />}
       <MaterialsContainer materials={materials} />
-      <DescriptionContainer />
+      <DescriptionContainer dimensions={dimensions} description={description} />
     </div>
   );
 }

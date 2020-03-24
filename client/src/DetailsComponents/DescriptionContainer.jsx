@@ -1,17 +1,28 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-function DescriptionContainer() {
+function DescriptionContainer({ dimensions, description }) {
   return (
     <div className="description-container">
-      <div>(dimensions header)</div>
-      <div>(dimensions dropdown)</div>
-      <div>Description</div>
-      <div>description body -  limited</div>
-      <div>button that opens up the rest of the description</div>
+      {!!dimensions
+        && <div className="dimensions-label">Dimensions</div>}
+      {!!dimensions
+      && <div className="dimensions-list">{dimensions}</div>}
+      <div className="description-label">Description</div>
+      <div className="description-body">{description}</div>
+      <div>button? that opens up the rest of the description</div>
     </div>
   );
 }
+
+DescriptionContainer.propTypes = {
+  dimensions: PropTypes.string,
+  description: PropTypes.string.isRequired,
+};
+
+DescriptionContainer.defaultProps = {
+  dimensions: null,
+};
 
 export default DescriptionContainer;
 
