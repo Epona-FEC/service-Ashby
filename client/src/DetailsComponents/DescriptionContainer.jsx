@@ -10,7 +10,7 @@ function DescriptionContainer({ dimensions, description }) {
       && <div className="dimensions-list">{dimensions}</div>}
       <div className="description-label">Description</div>
       <div className="description-body">{description}</div>
-      <div>button? that opens up the rest of the description</div>
+      <div>Button/Link that opens up the rest of the description</div>
     </div>
   );
 }

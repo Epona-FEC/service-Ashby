@@ -8,7 +8,6 @@ function QuantityContainer({ maxOrderQty }) {
   }
   return (
     <div className="quantity-container">
-      {/* <div>(quantity label)</div> */}
       <label htmlFor="quantity-dropdown" className="quantity-label">
         Quantity
         <select id="quantity-dropdown">
@@ -21,7 +20,11 @@ function QuantityContainer({ maxOrderQty }) {
 }
 
 QuantityContainer.propTypes = {
-  maxOrderQty: PropTypes.number.isRequired,
+  maxOrderQty: PropTypes.number,
+};
+
+QuantityContainer.defaultProps = {
+  maxOrderQty: 0,
 };
 
 export default QuantityContainer;

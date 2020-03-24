@@ -13,8 +13,13 @@ function StyleFlagsContainer({ handmade, vintage }) {
 }
 
 StyleFlagsContainer.propTypes = {
-  handmade: PropTypes.number.isRequired,
-  vintage: PropTypes.number.isRequired,
+  handmade: PropTypes.number,
+  vintage: PropTypes.number,
+};
+
+StyleFlagsContainer.defaultProps = {
+  handmade: null,
+  vintage: null,
 };
 
 export default StyleFlagsContainer;

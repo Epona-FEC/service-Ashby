@@ -11,7 +11,11 @@ function MaterialsContainer({ materials }) {
 }
 
 MaterialsContainer.propTypes = {
-  materials: PropTypes.string.isRequired,
+  materials: PropTypes.string,
+};
+
+MaterialsContainer.defaultProps = {
+  materials: '',
 };
 
 export default MaterialsContainer;

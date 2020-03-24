@@ -7,7 +7,7 @@ import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
 function getItem(callback) {
-  return axios.get('/item/5')
+  return axios.get('/item/24')
     .then((response) => {
       callback(null, response);
     })
@@ -122,8 +122,9 @@ function getShippingData(data) {
   const { country } = itemDetails;
   const { state } = itemDetails;
   const { city } = itemDetails;
+  const returnSynopsis = itemDetails.return_synopsis;
   const result = {
-    id, shipType, freeShip, timeframe, country, state, city,
+    id, shipType, freeShip, timeframe, country, state, city, returnSynopsis,
   };
   console.log(result);
 

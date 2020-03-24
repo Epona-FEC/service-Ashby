@@ -17,20 +17,20 @@ import TimeframeContainer from '../client/src/ShippingComponents/TimeframeContai
 import ShipSourceContainer from '../client/src/ShippingComponents/ShipSourceContainer.jsx'
 import ItemDetails from '../client/src/ItemDetails.jsx';
 
-describe('basic test of testing with jest', () => {
-  test('truth sanity', () => {
-    expect(true).toBe(true);
-  });
+// describe('basic test of testing with jest', () => {
+//   test('truth sanity', () => {
+//     expect(true).toBe(true);
+//   });
 
-  test('basic math sanity', () =>{
-    expect(2 + 3).toBe(5);
-  });
-});
+//   test('basic math sanity', () =>{
+//     expect(2 + 3).toBe(5);
+//   });
+// });
 
 describe('Cost Components', () => {
 
   describe('MarkdownContainer', function() {
-    const markdown = shallow(<MarkdownContainer />);
+    const markdown = shallow(<MarkdownContainer savings={''} ending={''} />);
 
     test('node should exist', () => {
       expect(markdown.exists()).toBe(true);
@@ -44,7 +44,13 @@ describe('Cost Components', () => {
   });
 
   describe('CostContainer', () => {
-    const cost = shallow(<CostContainer />);
+    const bestseller = 1;
+    const price = 1;
+    const discount = 1
+    const endDate = '';
+    const costData = { bestseller, price, discount, endDate };
+
+    const cost = shallow(<CostContainer costData={costData} />);
 
     test('node should exist', () => {
       expect(cost.exists()).toBe(true);
@@ -67,7 +73,7 @@ describe('Cost Components', () => {
 describe ('details components', () => {
 
   describe('StyleFlagsContainer', () => {
-    const styleFlags = shallow(<StyleFlagsContainer />);
+    const styleFlags = shallow(<StyleFlagsContainer handmade={0} vintage={0} />);
 
     test('node should exist', () => {
       expect(styleFlags.exists()).toBe(true);
@@ -78,7 +84,7 @@ describe ('details components', () => {
   });
 
   describe('MaterialsContainer', () => {
-    const materials = shallow(<MaterialsContainer />);
+    const materials = shallow(<MaterialsContainer materials={''} />);
 
     test('node should exist', () => {
       expect(materials.exists()).toBe(true);
@@ -89,7 +95,7 @@ describe ('details components', () => {
   });
 
   describe('DescriptionContainer', () => {
-    const description = shallow(<DescriptionContainer />);
+    const description = shallow(<DescriptionContainer dimensions={''} description={''} />);
 
     test('node should exist', () => {
       expect(description.exists()).toBe(true);
@@ -100,7 +106,14 @@ describe ('details components', () => {
   });
 
   describe('DetailsContainer', () => {
-    const details = shallow(<DetailsContainer />);
+    const handmade = 1;
+    const vintage = 1;
+    const materials = '';
+    const dimensions = '';
+    const description = '';
+    const detailsData = { handmade, vintage, materials, dimensions, description };
+
+    const details = shallow(<DetailsContainer detailsData={detailsData} />);
     const children = details.children();
 
     test('node should exist', () => {
@@ -127,7 +140,9 @@ describe ('details components', () => {
 describe('OptionsComponents', () => {
 
   describe('ChoicesContainer', () => {
-    const choices = shallow(<ChoicesContainer />);
+    const title = '';
+    const list = '';
+    const choices = shallow(<ChoicesContainer title={title} list={list} />);
 
     test('node should exist', () => {
       expect(choices.exists()).toBe(true);
@@ -149,7 +164,8 @@ describe('OptionsComponents', () => {
   });
 
   describe('QuantityContainer', () => {
-    const quantity = shallow(<QuantityContainer />);
+    const maxOrderQty = 0;
+    const quantity = shallow(<QuantityContainer maxOrderQty={maxOrderQty} />);
 
     test('node should exist', () => {
       expect(quantity.exists()).toBe(true);
@@ -160,7 +176,14 @@ describe('OptionsComponents', () => {
   });
 
   describe('SellingFlagsContainer', () => {
-    const sellingFlags = shallow(<SellingFlagsContainer />);
+    const inventory = 1;
+    const inOtherCarts = 1;
+    const shipType = '';
+    const freeShip = 1;
+    const sellingFlags = shallow(<SellingFlagsContainer inventory={inventory}
+      inOtherCarts={inOtherCarts}
+      shipType={shipType}
+      freeShip={freeShip} />);
 
     test('node should exist', () => {
       expect(sellingFlags.exists()).toBe(true);
@@ -171,14 +194,32 @@ describe('OptionsComponents', () => {
   });
 
   describe('OptionsContainer', () => {
-    const options = shallow(<OptionsContainer />);
-    const children = options.children();
+    const options = [{title: '', list:''}];
+    const personalizable = 1;
+    const maxOrderQty = 1;
+    const inventoryCount = 1;
+    const inOtherCarts = 1;
+    const type = '';
+    const free = 1;
+
+    const optionsData = {
+      options,
+      personalizable,
+      maxOrderQty,
+      inventoryCount,
+      inOtherCarts,
+      type,
+      free,
+    };
+
+    const optionsContainer = shallow(<OptionsContainer optionsData={optionsData} />);
+    const children = optionsContainer.children();
 
     test('node should exist', () => {
-      expect(options.exists()).toBe(true);
+      expect(optionsContainer.exists()).toBe(true);
     });
     test('should have "options-container" class', () => {
-      expect(options.hasClass('options-container')).toBe(true);
+      expect(optionsContainer.hasClass('options-container')).toBe(true);
     });
     test('should have ChoicesContainer child', () => {
       expect(children.containsMatchingElement(<ChoicesContainer />)).toBe(true);
@@ -196,7 +237,8 @@ describe('OptionsComponents', () => {
 });
 
 describe('PoliciesContainer', () => {
-  const policies = shallow(<PoliciesContainer />);
+  const policiesData = '';
+  const policies = shallow(<PoliciesContainer policiesData={policiesData} />);
   test('node should exist', () => {
     expect(policies.exists()).toBe(true);
   });
@@ -230,7 +272,19 @@ describe('ShippingComponents', () => {
   });
 
   describe('ShippingContainer', () => {
-    const shipping = shallow(<ShippingContainer />);
+    const shipType = '';
+    const freeShip = 1;
+    const timeframe = '';
+    const country = '';
+    const state = '';
+    const city = '';
+    const returnSynopsis = '';
+
+    const shippingData = {
+      shipType, freeShip, timeframe, country, state, city, returnSynopsis
+    };
+
+    const shipping = shallow(<ShippingContainer shippingData={shippingData} />);
     const children = shipping.children();
 
     test('node should exist', () => {
@@ -249,6 +303,11 @@ describe('ShippingComponents', () => {
 });
 
 describe('ItemDetails overall container', () => {
+  const costData = {};
+  const optionsData = {};
+  const detailsData = {};
+  const shippingData = {};
+  const policiesData = {};
   const itemDetails = shallow(<ItemDetails />);
   const children = itemDetails.children();
 
@@ -265,23 +324,23 @@ describe('ItemDetails overall container', () => {
   });
 
   test('should have CostContainer child', () => {
-    expect(children.containsMatchingElement(<CostContainer />)).toBe(true);
+    expect(children.containsMatchingElement(<CostContainer costData={costData} />)).toBe(true);
   });
 
   test('should have OptionsContainer child', () => {
-    expect(children.containsMatchingElement(<OptionsContainer />)).toBe(true);
+    expect(children.containsMatchingElement(<OptionsContainer optionsData={optionsData} />)).toBe(true);
   });
 
   test('should have DetailsContainer child', () => {
-    expect(children.containsMatchingElement(<DetailsContainer />)).toBe(true);
+    expect(children.containsMatchingElement(<DetailsContainer detailsData={detailsData} />)).toBe(true);
   });
 
   test('should have ShippingContainer child', () => {
-    expect(children.containsMatchingElement(<ShippingContainer />)).toBe(true);
+    expect(children.containsMatchingElement(<ShippingContainer shippingData={shippingData} />)).toBe(true);
   });
 
   test('should have PoliciesContainer child', () => {
-    expect(children.containsMatchingElement(<PoliciesContainer />)).toBe(true);
+    expect(children.containsMatchingElement(<PoliciesContainer policiesData={policiesData} />)).toBe(true);
   });
 });
 
