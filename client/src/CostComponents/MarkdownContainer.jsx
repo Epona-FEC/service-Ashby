@@ -9,17 +9,25 @@ function MarkdownContainer({ savings, ending }) {
         savings: $
         {savings}
       </div>
-      <div className="sale-ending">
-        sale ending:
-        {ending}
-      </div>
+      {!!ending
+        && (
+          <div className="sale-ending">
+            sale ending:
+            {ending}
+          </div>
+        )}
+
     </div>
   );
 }
 
 MarkdownContainer.propTypes = {
   savings: PropTypes.number.isRequired,
-  ending: PropTypes.string.isRequired,
+  ending: PropTypes.string,
+};
+
+MarkdownContainer.defaultProps = {
+  ending: null,
 };
 
 export default MarkdownContainer;

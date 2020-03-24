@@ -10,7 +10,7 @@ function CostContainer({ costData }) {
   let priceDiff = 0;
   if (discount) {
     currPrice = (price - (price * discount) / 100).toFixed(2);
-    priceDiff = price - currPrice;
+    priceDiff = (price - currPrice).toFixed(2);
   }
   return (
     <div className="cost-container">
@@ -20,7 +20,12 @@ function CostContainer({ costData }) {
         {currPrice}
       </div>
       {!!discount
-        && <div className="original-price">{price}</div>}
+        && (
+          <div className="original-price">
+            $
+            {price.toFixed(2)}
+          </div>
+        )}
       {/* will go to right of discounted price */}
       {!!discount
         && <MarkdownContainer savings={priceDiff} ending={endDate} />}
