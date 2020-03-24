@@ -1,17 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StyleFlagsContainer from './StyleFlagsContainer';
 import MaterialsContainer from './MaterialsContainer';
 import DescriptionContainer from './DescriptionContainer';
 
-function DetailsContainer() {
+function DetailsContainer({ detailsData }) {
+  const {
+    handmade, vintage, materials, dimensions, description,
+  } = detailsData;
   return (
     <div className="details-container">
-      <StyleFlagsContainer />
-      <MaterialsContainer />
-      <DescriptionContainer />
+      {(!!handmade || !!vintage)
+        && <StyleFlagsContainer handmade={handmade} vintage={vintage} />}
+      <MaterialsContainer materials={materials} />
+      <DescriptionContainer dimensions={dimensions} description={description} />
     </div>
   );
 }
+
+DetailsContainer.propTypes = {
+  detailsData: PropTypes.shape({
+    handmade: PropTypes.number,
+    vintage: PropTypes.number,
+    materials: PropTypes.string,
+    dimensions: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+};
 
 export default DetailsContainer;
 

@@ -1,15 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function PoliciesContainer() {
+function PoliciesContainer({ policiesData }) {
+  const {
+    policies, returnsCondition, giftWrap, faqs,
+  } = policiesData;
   return (
     <div className="policies-container">
-      <div>shop policies - button that brings up a reader w/policies</div>
-      <div>(terma and conditions)</div>
-      <div>(Gift wrapping available , dashed underline - hover brings up blurb)</div>
-      <div>(FAQs - button just like shipping)</div>
+      {(policies !== '')
+        && <button type="button" className="shop-policies-button">View shop policies</button>}
+      {(returnsCondition !== '')
+        && <button type="button" className="shop-terms-button">View sale terms and conditions</button>}
+      {!!giftWrap
+        && <div className="shop-giftwrap-label">Gift wrapping available</div>}
+      {!!faqs
+        && <button type="button" className="faq-button">(FAQs - button just like shipping)</button>}
     </div>
   );
 }
+
+PoliciesContainer.propTypes = {
+  policiesData: PropTypes.shape({
+    policies: PropTypes.string,
+    returnsCondition: PropTypes.string,
+    giftWrap: PropTypes.number,
+    faqs: PropTypes.number,
+  }).isRequired,
+};
 
 export default PoliciesContainer;
 

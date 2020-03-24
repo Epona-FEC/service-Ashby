@@ -1,13 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function MaterialsContainer() {
+function MaterialsContainer({ materials }) {
   return (
     <div className="materials-container">
-      <div>Materials</div>
-      <div>materials list</div>
+      <div className="materials-label">Materials</div>
+      <div className="materials-list">{materials}</div>
     </div>
   );
 }
+
+MaterialsContainer.propTypes = {
+  materials: PropTypes.string,
+};
+
+MaterialsContainer.defaultProps = {
+  materials: '',
+};
 
 export default MaterialsContainer;
 

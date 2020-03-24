@@ -1,16 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MarkdownContainer from './MarkdownContainer';
 
-function CostContainer() {
+function CostContainer({ costData }) {
+  const {
+    bestseller, price, discount, endDate,
+  } = costData;
+  let currPrice = price;
+  let priceDiff = 0;
+  if (discount) {
+    currPrice = (price - (price * discount) / 100).toFixed(2);
+    priceDiff = (price - currPrice).toFixed(2);
+  }
   return (
     <div className="cost-container">
-      <div>(possible bestseller tag)</div>
-      <div>Price (might be a markdown pice)</div>
-      <div>(goes to right of price, possible full price if on markdown)</div>
-      <MarkdownContainer />
+      {!!bestseller && <div>It is a bestseller!</div>}
+      <div className="current-price">
+        $
+        {currPrice}
+      </div>
+      {!!discount
+        && (
+          <div className="original-price">
+            $
+            {price.toFixed(2)}
+          </div>
+        )}
+      {/* will go to right of discounted price */}
+      {!!discount
+        && <MarkdownContainer savings={priceDiff} ending={endDate} />}
     </div>
   );
 }
+
+CostContainer.propTypes = {
+  costData: PropTypes.shape({
+    bestseller: PropTypes.number,
+    price: PropTypes.number,
+    discount: PropTypes.number,
+    endDate: PropTypes.string,
+  }).isRequired,
+};
 
 export default CostContainer;
 

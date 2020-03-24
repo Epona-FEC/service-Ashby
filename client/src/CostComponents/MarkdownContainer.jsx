@@ -1,13 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function MarkdownContainer() {
+
+function MarkdownContainer({ savings, ending }) {
   return (
     <div className="markdown-container">
-      <div>(savings)</div>
-      <div>(sales ending - time remaining)</div>
+      <div className="savings">
+        savings: $
+        {savings}
+      </div>
+      {!!ending
+        && (
+          <div className="sale-ending">
+            sale ending:
+            {ending}
+          </div>
+        )}
+
     </div>
   );
 }
+
+MarkdownContainer.propTypes = {
+  savings: PropTypes.string.isRequired,
+  ending: PropTypes.string,
+};
+
+MarkdownContainer.defaultProps = {
+  ending: null,
+};
 
 export default MarkdownContainer;
 

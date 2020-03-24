@@ -3,8 +3,10 @@ import React from 'react';
 function PersonalizeContainer() {
   return (
     <div className="personalization-container">
-      <div>(Personalizaton:)</div>
-      <div>(text area for personalization)</div>
+      <label htmlFor="personalization" className="personalization-label">
+        Personalizaton:
+        <input type="text" id="personalization" name="personalization" />
+      </label>
     </div>
   );
 }

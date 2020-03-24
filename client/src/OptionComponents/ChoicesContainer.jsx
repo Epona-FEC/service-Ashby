@@ -1,13 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function ChoicesContainer() {
+function ChoicesContainer({ title, list }) {
+  const listItems = list.split(',');
   return (
     <div className="choices-container">
-      <div>(option title) ,-- there may be 0 to 3 of option title/dropdowns</div>
-      <div>(option dropdown  )</div>
+      <label htmlFor={title} className="choice-title">{title}</label>
+      <select id={title}>
+        {listItems.map((item) => (
+          <option className="choice-item" key={item} value={item}>{item}</option>))}
+      </select>
     </div>
   );
 }
+
+ChoicesContainer.propTypes = {
+  title: PropTypes.string.isRequired,
+  list: PropTypes.string.isRequired,
+};
 
 export default ChoicesContainer;
 

@@ -1,13 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function StyleFlagsContainer() {
+function StyleFlagsContainer({ handmade, vintage }) {
   return (
     <div className="style-flags-container">
-      <div>(handmade icon and label)</div>
-      <div>(vintage icon and label)</div>
+      {!!handmade
+        && <div className="handmade-flag">Handmade</div>}
+      {!!vintage
+        && <div className="vintage-flag">Vintage</div>}
     </div>
   );
 }
+
+StyleFlagsContainer.propTypes = {
+  handmade: PropTypes.number,
+  vintage: PropTypes.number,
+};
+
+StyleFlagsContainer.defaultProps = {
+  handmade: null,
+  vintage: null,
+};
 
 export default StyleFlagsContainer;
 

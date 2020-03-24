@@ -1,20 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ChoicesContainer from './ChoicesContainer';
 import PersonalizeContainer from './PersonalizeContainer';
 import QuantityContainer from './QuantityContainer';
 import SellingFlagsContainer from './SellingFlagsContainer';
 
-function OptionsContainer() {
+function OptionsContainer({ optionsData }) {
+  const {
+    options,
+    personalizable,
+    maxOrderQty,
+    inventoryCount,
+    inOtherCarts,
+    type,
+    free,
+  } = optionsData;
+  const areOptions = (options && options.length > 0);
   return (
     <div className="options-container">
-      <ChoicesContainer />
-      <PersonalizeContainer />
-      <QuantityContainer />
-      <div>Button: Add to Cart</div>
-      <SellingFlagsContainer />
+      {areOptions
+        && options.map(({ title, list }) => (
+          <ChoicesContainer key={title} title={title} list={list} />
+        ))}
+      {!!personalizable
+        && <PersonalizeContainer />}
+      {!!maxOrderQty
+        && <QuantityContainer maxOrderQty={maxOrderQty} />}
+      <button type="button">Add to Cart</button>
+      <SellingFlagsContainer
+        inventory={inventoryCount}
+        inOtherCarts={inOtherCarts}
+        shipType={type}
+        freeShip={free}
+      />
     </div>
   );
 }
+
+OptionsContainer.propTypes = {
+  optionsData: PropTypes.shape({
+    id: PropTypes.number,
+    options: PropTypes.array,
+    personalizable: PropTypes.number,
+    maxOrderQty: PropTypes.number,
+    inventoryCount: PropTypes.number,
+    inOtherCarts: PropTypes.number,
+    type: PropTypes.string,
+    free: PropTypes.number,
+  }).isRequired,
+};
 
 export default OptionsContainer;
 
