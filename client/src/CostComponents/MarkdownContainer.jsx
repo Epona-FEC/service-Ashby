@@ -22,7 +22,7 @@ function MarkdownContainer({ savings, ending }) {
 }
 
 MarkdownContainer.propTypes = {
-  savings: PropTypes.number.isRequired,
+  savings: PropTypes.string.isRequired,
   ending: PropTypes.string,
 };
 

@@ -27,7 +27,12 @@ function OptionsContainer({ optionsData }) {
       {!!maxOrderQty
         && <QuantityContainer maxOrderQty={maxOrderQty} />}
       <button type="button">Add to Cart</button>
-      <SellingFlagsContainer />
+      <SellingFlagsContainer
+        inventory={inventoryCount}
+        inOtherCarts={inOtherCarts}
+        shipType={type}
+        freeShip={free}
+      />
     </div>
   );
 }
