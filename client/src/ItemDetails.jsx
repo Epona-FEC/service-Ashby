@@ -7,7 +7,7 @@ import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
 function getItem(callback) {
-  return axios.get('/item/3')
+  return axios.get('/item/2')
     .then((response) => {
       callback(null, response);
     })

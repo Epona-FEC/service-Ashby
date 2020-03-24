@@ -7,7 +7,6 @@ import SellingFlagsContainer from './SellingFlagsContainer';
 
 function OptionsContainer({ optionsData }) {
   const {
-    id,
     options,
     personalizable,
     maxOrderQty,
@@ -25,8 +24,9 @@ function OptionsContainer({ optionsData }) {
         ))}
       {!!personalizable
         && <PersonalizeContainer />}
-      <QuantityContainer />
-      <div>Button: Add to Cart</div>
+      {!!maxOrderQty
+        && <QuantityContainer maxOrderQty={maxOrderQty} />}
+      <button type="button">Add to Cart</button>
       <SellingFlagsContainer />
     </div>
   );
