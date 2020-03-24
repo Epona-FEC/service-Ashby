@@ -13,7 +13,7 @@ function DetailsContainer({ detailsData }) {
     <div className="details-container">
       {(!!handmade || !!vintage)
         && <StyleFlagsContainer handmade={handmade} vintage={vintage} />}
-      <MaterialsContainer />
+      <MaterialsContainer materials={materials} />
       <DescriptionContainer />
     </div>
   );
