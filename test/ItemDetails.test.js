@@ -196,8 +196,8 @@ describe('OptionsComponents', () => {
   describe('OptionsContainer', () => {
     const options = [{title: '', list:''}];
     const personalizable = 1;
-    const maxOrderQty = 1;
-    const inventoryCount = 1;
+    const maxOrderQty = 5;
+    const inventoryCount = 5;
     const inOtherCarts = 1;
     const type = '';
     const free = 1;
@@ -228,7 +228,7 @@ describe('OptionsComponents', () => {
       expect(children.containsMatchingElement(<PersonalizeContainer />)).toBe(true);
     });
     test('should have QuantityContainer child', () => {
-      expect(children.containsMatchingElement(<QuantityContainer />)).toBe(true);
+      expect(children.containsMatchingElement(<QuantityContainer maxOrderQty={maxOrderQty} />)).toBe(true);
     });
     test('should have SellingFlagsContainer child', () => {
       expect(children.containsMatchingElement(<SellingFlagsContainer />)).toBe(true);
@@ -237,13 +237,17 @@ describe('OptionsComponents', () => {
 });
 
 describe('PoliciesContainer', () => {
-  const policiesData = '';
-  const policies = shallow(<PoliciesContainer policiesData={policiesData} />);
+  const policies = '';
+  const returnsCondition = '';
+  const giftWrap = 1;
+  const faqs = 1;
+  const policiesData = { policies, returnsCondition, giftWrap, faqs };
+  const policiesWrapper = shallow(<PoliciesContainer policiesData={policiesData} />);
   test('node should exist', () => {
-    expect(policies.exists()).toBe(true);
+    expect(policiesWrapper.exists()).toBe(true);
   });
   test('should have "policies-container" class', () => {
-    expect(policies.hasClass('policies-container')).toBe(true);
+    expect(policiesWrapper.hasClass('policies-container')).toBe(true);
   });
 });
 
