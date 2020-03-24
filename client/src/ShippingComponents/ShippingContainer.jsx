@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import TimeframeContainer from './TimeframeContainer';
 import ShipSourceContainer from './ShipSourceContainer';
 
+
+// Ideally would break this component out into another file:
 function ShippingFee({ shipType, freeShip }) {
   if (shipType === 'digital') {
     return null;
@@ -24,8 +26,8 @@ function ShippingContainer({ shippingData }) {
   } = shippingData;
   return (
     <div className="shipping-container">
-      <TimeframeContainer />
-      <ShipSourceContainer />
+      <TimeframeContainer timeframe={timeframe} />
+      <ShipSourceContainer country={country} state={state} city={city} />
       <ShippingFee shipType={shipType} freeShip={freeShip} />
       <button type="button" className="shipping-cost-button">Get Shipping Cost</button>
       {!!returnSynopsis
