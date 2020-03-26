@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import CostContainer from './CostComponents/CostContainer';
 import OptionsContainer from './OptionComponents/OptionsContainer';
 import DetailsContainer from './DetailsComponents/DetailsContainer';
 import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
-function getItem(callback) {
-  return axios.get('/item/24')
+function getItem(itemId, callback) {
+  return axios.get(`/item/${itemId}`)
     .then((response) => {
       callback(null, response);
     })
@@ -98,9 +99,11 @@ function getShippingData(data) {
 }
 
 class ItemDetails extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { itemId } = this.props;
     this.state = {
+      id: itemId,
       title: '',
       cost: {},
       options: {},
@@ -111,7 +114,8 @@ class ItemDetails extends React.Component {
   }
 
   componentDidMount() {
-    getItem((err, { data }) => {
+    const { id } = this.state;
+    getItem(id, (err, { data }) => {
       if (err) {
         console.error(err);
       } else {
@@ -154,6 +158,14 @@ class ItemDetails extends React.Component {
     );
   }
 }
+
+ItemDetails.propTypes = {
+  itemId: PropTypes.number,
+};
+
+ItemDetails.defaultProps = {
+  itemId: 1,
+};
 
 export default ItemDetails;
 
