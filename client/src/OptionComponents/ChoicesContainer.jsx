@@ -6,9 +6,13 @@ function ChoicesContainer({ title, list }) {
   return (
     <div className="choices-container">
       <label htmlFor={title} className="choice-title">{title}</label>
-      <select id={title}>
+      <select className="choice-dropdown" id={title}>
         {listItems.map((item) => (
-          <option className="choice-item" key={item} value={item}>{item}</option>))}
+          <option className="choice-item" key={item} value={item}>
+            &nbsp;&nbsp;
+            {item}
+          </option>
+        ))}
       </select>
     </div>
   );

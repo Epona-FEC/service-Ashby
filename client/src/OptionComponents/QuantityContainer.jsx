@@ -8,13 +8,18 @@ function QuantityContainer({ maxOrderQty }) {
   }
   return (
     <div className="quantity-container">
-      <label htmlFor="quantity-dropdown" className="quantity-label">
+      <div className="quantity-label">
         Quantity
-        <select id="quantity-dropdown">
-          {quantities.map((quantity) => (
-            <option key={quantity} value={quantity}>{quantity}</option>))}
-        </select>
-      </label>
+      </div>
+      <select id="quantity-dropdown">
+        {quantities.map((quantity) => (
+          <option key={quantity} value={quantity}>
+            &nbsp;&nbsp;
+            {quantity}
+          </option>
+        ))}
+      </select>
+
     </div>
   );
 }

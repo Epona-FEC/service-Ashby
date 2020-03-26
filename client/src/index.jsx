@@ -1,9 +1,10 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './style.css';
 import ItemDetails from './ItemDetails';
 
-ReactDOM.render(<ItemDetails />, document.getElementById('item-info'));
+ReactDOM.render(<ItemDetails />, document.getElementById('app2'));
 
 /*
 visual on ideas for component layout

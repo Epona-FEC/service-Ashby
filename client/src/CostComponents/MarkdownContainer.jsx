@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
+// took out using 'ending' for brevity
+// ideally would calculate how much time is left until then & display that
 function MarkdownContainer({ savings, ending }) {
   return (
     <div className="markdown-container">
-      <div className="savings">
-        savings: $
+      <div className="markdown-savings">
+        You save $
         {savings}
       </div>
       {!!ending
         && (
-          <div className="sale-ending">
-            sale ending:
-            {ending}
+          <div className="markdown-sale-ending">
+            Sale ends in 12 hours
           </div>
         )}
 

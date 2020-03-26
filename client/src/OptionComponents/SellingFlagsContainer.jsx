@@ -12,23 +12,44 @@ function SellingFlagsContainer({
     <div className="selling-flags-container">
 
       {!!digital
-        && <div className="selling-flag digital-download">digital download</div>}
+        && (
+        <div className="selling-flag">
+          <img src="download.png" alt="digital download" />
+          <div className="digital-download">digital download</div>
+        </div>
+        )}
       {!!freeShip
-        && <div className="selling-flag free-shipping">free shipping</div>}
+        && (
+        <div className="selling-flag">
+          <img src="truck.png" alt="delivery truck" />
+          <div className="free-shipping">
+            <strong>Hooray!</strong>
+            &nbsp;This item ships free to the US.
+          </div>
+        </div>
+        )}
       {!!inventory
         && (
-        <div className="selling-flag low-stock">
-          Last Chance:
-          {inventory}
-          left in stock
+        <div className="selling-flag">
+          <img src="hourglass.png" alt="hourglass" />
+          <div className="low-stock">
+            <strong>Last Chance:</strong>
+            &nbsp;
+            {inventory}
+            &nbsp;left in stock
+          </div>
         </div>
         )}
       {!!inOtherCarts
         && (
-        <div className="selling-flag other-carts">
-          Hot item:
-          {inOtherCarts}
-          in other carts
+        <div className="selling-flag">
+          <img src="cart.png" alt="shopping cart" />
+          <div className="other-carts">
+            <strong>Hot item:</strong>
+            &nbsp;
+            {inOtherCarts}
+            &nbsp;people have this in their carts right now.
+          </div>
         </div>
         )}
     </div>

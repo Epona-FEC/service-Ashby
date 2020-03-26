@@ -3,12 +3,12 @@ const morgan = require('morgan');
 const data = require('../database-mysql/index');
 
 const app = express();
-const port = 3004;
+const port = 3002;
 
 app.use(morgan('dev'));
 
 app.use(express.static('client/dist'));
-
+app.use(express.static('public'));
 
 // ********************  data fetching  ********************
 
@@ -50,7 +50,7 @@ app.get('/items', (req, res) => {
   });
 });
 // manual test with:
-// curl -i http://localhost:3004/items
+// curl -i http://localhost:3002/items
 
 app.get('/item/:itemId', (req, res) => {
   const { itemId } = req.params;
@@ -67,14 +67,14 @@ app.get('/item/:itemId', (req, res) => {
   }
 });
 // manual test with:
-// curl -i http://localhost:3004/item/5
+// curl -i http://localhost:3002/item/5
 
 app.get('/shipping/:itemId', (req, res) => {
   const fee = getShippingFee();
   res.status(200).send(fee);
 });
 // manual test with:
-// curl -i http://localhost:3004/shipping/1
+// curl -i http://localhost:3002/shipping/1
 
 
 app.listen(port, () => {

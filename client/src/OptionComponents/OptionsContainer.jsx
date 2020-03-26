@@ -26,7 +26,7 @@ function OptionsContainer({ optionsData }) {
         && <PersonalizeContainer />}
       {!!maxOrderQty
         && <QuantityContainer maxOrderQty={maxOrderQty} />}
-      <button type="button">Add to Cart</button>
+      <button type="button" className="add-to-cart">Add to Cart</button>
       <SellingFlagsContainer
         inventory={inventoryCount}
         inOtherCarts={inOtherCarts}

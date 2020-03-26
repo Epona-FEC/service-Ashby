@@ -14,18 +14,21 @@ function CostContainer({ costData }) {
   }
   return (
     <div className="cost-container">
-      {!!bestseller && <div>It is a bestseller!</div>}
-      <div className="current-price">
-        $
-        {currPrice}
+      {!!bestseller && <div className="bestseller-flag">Bestseller</div>}
+      <div className="price-container">
+        <div className="current-price">
+          $
+          {currPrice}
+        </div>
+        {!!discount
+          && (
+            <div className="original-price">
+              $
+              {price.toFixed(2)}
+              +
+            </div>
+          )}
       </div>
-      {!!discount
-        && (
-          <div className="original-price">
-            $
-            {price.toFixed(2)}
-          </div>
-        )}
       {/* will go to right of discounted price */}
       {!!discount
         && <MarkdownContainer savings={priceDiff} ending={endDate} />}

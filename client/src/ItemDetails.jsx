@@ -15,6 +15,7 @@ function getItem(callback) {
       callback(error);
     });
 }
+// 24 has most optionals
 
 function getCostData(data) {
   const itemDetails = data.itemDetails[0];
@@ -34,7 +35,6 @@ function getCostData(data) {
   const result = {
     id, bestseller, price, discount, endDate,
   };
-
   return result;
 }
 
@@ -49,14 +49,6 @@ function getDetailsData(data) {
   const result = {
     id, handmade, vintage, materials, dimensions, description,
   };
-  /*
-id
-handmade
-vintage
-materials
-dimensions
-description
-*/
   return result;
 }
 
@@ -73,20 +65,6 @@ function getOptionsData(data) {
   const result = {
     id, options, personalizable, maxOrderQty, inventoryCount, inOtherCarts, type, free,
   };
-  console.log(result);
-
-  /*
-id
-options - array of 0 to 3, each with title and string list
-personalizable
-max_order_qty
-inventory_count,
-in_other_carts,
-
-& shipping info:
-type --> shipping
-free --> shipping
-*/
   return result;
 }
 
@@ -100,16 +78,6 @@ function getPoliciesData(data) {
   const result = {
     id, policies, returnsCondition, giftWrap, faqs,
   };
-  console.log(result);
-
-  /*
-
-id
-policies
-returns_condition
-gift_wrap
-faqs
-*/
   return result;
 }
 
@@ -126,17 +94,6 @@ function getShippingData(data) {
   const result = {
     id, shipType, freeShip, timeframe, country, state, city, returnSynopsis,
   };
-  console.log(result);
-
-  /*
-id
-type,   --last three refer to shipping
-free,
-timeframe
-country
-state
-city
-*/
   return result;
 }
 
@@ -144,6 +101,7 @@ class ItemDetails extends React.Component {
   constructor() {
     super();
     this.state = {
+      title: '',
       cost: {},
       options: {},
       details: {},
@@ -155,7 +113,7 @@ class ItemDetails extends React.Component {
   componentDidMount() {
     getItem((err, { data }) => {
       if (err) {
-        console.log(err);
+        console.error(err);
       } else {
         this.updateItem(data);
       }
@@ -163,13 +121,14 @@ class ItemDetails extends React.Component {
   }
 
   updateItem(data) {
+    const { title } = data.itemDetails[0];
     const costData = getCostData(data);
     const optionsData = getOptionsData(data);
-    console.log('options data gathered is', optionsData);
     const detailsData = getDetailsData(data);
     const shippingData = getShippingData(data);
     const policiesData = getPoliciesData(data);
     this.setState({
+      title,
       cost: costData,
       options: optionsData,
       details: detailsData,
@@ -181,12 +140,11 @@ class ItemDetails extends React.Component {
   // function ItemDetails() {
   render() {
     const {
-      cost, options, details, shipping, policies,
+      title, cost, options, details, shipping, policies,
     } = this.state;
-    console.log('just before render, options data is', options);
     return (
-      <div className="item-details">
-        <h1 className="item-name">item name goes here</h1>
+      <div className="item-details-container">
+        <h1 className="item-name">{title}</h1>
         <CostContainer costData={cost} />
         <OptionsContainer optionsData={options} />
         <DetailsContainer detailsData={details} />
