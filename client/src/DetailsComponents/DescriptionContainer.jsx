@@ -5,12 +5,12 @@ function DescriptionContainer({ dimensions, description }) {
   return (
     <div className="det-description-container">
       {!!dimensions
-        && <div className="det-dimensions-label">Dimensions</div>}
+        && <div className="det-description-label">Dimensions</div>}
       {!!dimensions
       && <div className="det-dimensions-list">{dimensions}</div>}
       <div className="det-description-label">Description</div>
       <div className="det-description-body">{description}</div>
-      <div>Button/Link that opens up the rest of the description</div>
+      {/* <div>Button/Link that opens up the rest of the description</div> */}
     </div>
   );
 }
