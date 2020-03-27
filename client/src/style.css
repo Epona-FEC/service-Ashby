@@ -146,7 +146,7 @@ img.det-selling-flag {
 }
 
 .det-materials-container {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .det-materials-label {
@@ -163,7 +163,7 @@ img.det-selling-flag {
 }
 
 .det-description-container {
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
 .det-description-label {
@@ -183,4 +183,72 @@ img.det-selling-flag {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 24px;
+}
+
+.det-shipping-container {
+  margin-bottom: 30px;
+}
+
+.det-shipping-out-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.det-timeframe-label {
+  color: #595959;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.det-timeframe-info {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.det-ship-source-container {
+  margin-left: 40px;
+}
+
+.det-ship-source-label {
+  color: #595959;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.det-ship-source-location {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.det-ship-cost-label {
+  color: #595959;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.det-shipping-fee {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.det-shipping-cost-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  margin: 14px 14px 14px -6px;
+}
+
+.det-return-synopsis {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }

@@ -10,7 +10,7 @@ function ShippingFee({ shipType, freeShip }) {
     return null;
   }
   if (freeShip) {
-    return <div className="det-shipping-fee">Free Shipping</div>;
+    return <div className="det-shipping-fee">Free</div>;
   }
   return <div className="det-shipping-fee">$6.99</div>;
 }
@@ -26,10 +26,14 @@ function ShippingContainer({ shippingData }) {
   } = shippingData;
   return (
     <div className="det-shipping-container">
-      <TimeframeContainer timeframe={timeframe} />
-      <ShipSourceContainer country={country} state={state} city={city} />
+      <div className="det-shipping-out-info">
+        <TimeframeContainer timeframe={timeframe} />
+        <ShipSourceContainer country={country} state={state} city={city} />
+      </div>
+      <div className="det-ship-cost-label">Cost to ship</div>
       <ShippingFee shipType={shipType} freeShip={freeShip} />
-      <button type="button" className="det-shipping-cost-button">Get Shipping Cost</button>
+      {!freeShip
+        && <button type="button" className="det-shipping-cost-button">Get Shipping Cost</button>}
       {!!returnSynopsis
         && <div className="det-return-synopsis">{returnSynopsis}</div>}
     </div>

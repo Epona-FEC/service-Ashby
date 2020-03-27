@@ -5,7 +5,7 @@ function TimeframeContainer({ timeframe }) {
   return (
     <div className="det-timeframe-container">
       <div className="det-timeframe-label">Ready to Ship in</div>
-      <div>{timeframe}</div>
+      <div className="det-timeframe-info">{timeframe}</div>
     </div>
   );
 }
