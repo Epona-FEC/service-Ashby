@@ -137,3 +137,11 @@ img.det-selling-flag {
   max-height: 40px;
   padding-right: 12px;
 }
+
+.det-style-label {
+  color: #595959;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+

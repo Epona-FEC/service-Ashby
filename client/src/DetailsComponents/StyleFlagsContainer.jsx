@@ -5,9 +5,19 @@ function StyleFlagsContainer({ handmade, vintage }) {
   return (
     <div className="det-style-flags-container">
       {!!handmade
-        && <div className="det-handmade-flag">Handmade</div>}
+        && (
+        <div className="det-featue-image">
+          <img src="http://localhost:3002/hand.png" alt="hourglass" className="det-selling-flag" />
+          <div className="det-style-label">Handmade</div>
+        </div>
+        )}
       {!!vintage
-        && <div className="det-vintage-flag">Vintage</div>}
+        && (
+        <div className="det-featue-image">
+          <img src="http://localhost:3002/clock.png" alt="hourglass" className="det-selling-flag" />
+          <div className="det-style-label">Vintage</div>
+        </div>
+        )}
     </div>
   );
 }
