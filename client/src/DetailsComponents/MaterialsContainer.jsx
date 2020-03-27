@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function MaterialsContainer({ materials }) {
   return (
-    <div className="materials-container">
-      <div className="materials-label">Materials</div>
-      <div className="materials-list">{materials}</div>
+    <div className="det-materials-container">
+      <div className="det-materials-label">Materials</div>
+      <div className="det-materials-list">{materials}</div>
     </div>
   );
 }

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 function DescriptionContainer({ dimensions, description }) {
   return (
-    <div className="description-container">
+    <div className="det-description-container">
       {!!dimensions
-        && <div className="dimensions-label">Dimensions</div>}
+        && <div className="det-dimensions-label">Dimensions</div>}
       {!!dimensions
-      && <div className="dimensions-list">{dimensions}</div>}
-      <div className="description-label">Description</div>
-      <div className="description-body">{description}</div>
+      && <div className="det-dimensions-list">{dimensions}</div>}
+      <div className="det-description-label">Description</div>
+      <div className="det-description-body">{description}</div>
       <div>Button/Link that opens up the rest of the description</div>
     </div>
   );

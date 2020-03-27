@@ -2,11 +2,11 @@ import React from 'react';
 
 function PersonalizeContainer() {
   return (
-    <div className="personalization-container">
-      <label htmlFor="personalization" className="personalization-label">
-        Personalizaton:
-        <input type="text" id="personalization" name="personalization" />
-      </label>
+    <div className="det-personalization-container">
+      <div className="det-personalization-label">
+        add your personalizaton:
+      </div>
+      <input type="text" className="det-personalization-input" name="personalization" />
     </div>
   );
 }

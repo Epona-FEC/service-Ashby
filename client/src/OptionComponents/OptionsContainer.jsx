@@ -17,7 +17,7 @@ function OptionsContainer({ optionsData }) {
   } = optionsData;
   const areOptions = (options && options.length > 0);
   return (
-    <div className="options-container">
+    <div className="det-options-container">
       {areOptions
         && options.map(({ title, list }) => (
           <ChoicesContainer key={title} title={title} list={list} />
@@ -26,7 +26,7 @@ function OptionsContainer({ optionsData }) {
         && <PersonalizeContainer />}
       {!!maxOrderQty
         && <QuantityContainer maxOrderQty={maxOrderQty} />}
-      <button type="button" className="add-to-cart">Add to Cart</button>
+      <button type="button" className="det-add-to-cart">Add to Cart</button>
       <SellingFlagsContainer
         inventory={inventoryCount}
         inOtherCarts={inOtherCarts}

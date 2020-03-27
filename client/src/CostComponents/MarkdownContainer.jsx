@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 // ideally would calculate how much time is left until then & display that
 function MarkdownContainer({ savings, ending }) {
   return (
-    <div className="markdown-container">
-      <div className="markdown-savings">
+    <div className="det-markdown-container">
+      <div className="det-markdown-savings">
         You save $
         {savings}
       </div>
       {!!ending
         && (
-          <div className="markdown-sale-ending">
+          <div className="det-markdown-sale-ending">
             Sale ends in 12 hours
           </div>
         )}

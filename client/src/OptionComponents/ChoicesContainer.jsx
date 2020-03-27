@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 function ChoicesContainer({ title, list }) {
   const listItems = list.split(',');
   return (
-    <div className="choices-container">
-      <label htmlFor={title} className="choice-title">{title}</label>
-      <select className="choice-dropdown" id={title}>
+    <div className="det-choices-container">
+      <label htmlFor={title} className="det-choice-title">{title}</label>
+      <select className="det-choice-dropdown" id={title}>
         {listItems.map((item) => (
-          <option className="choice-item" key={item} value={item}>
+          <option className="det-choice-item" key={item} value={item}>
             &nbsp;&nbsp;
             {item}
           </option>

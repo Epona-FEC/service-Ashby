@@ -7,11 +7,11 @@ function QuantityContainer({ maxOrderQty }) {
     quantities.push(qty);
   }
   return (
-    <div className="quantity-container">
-      <div className="quantity-label">
+    <div className="det-quantity-container">
+      <div className="det-quantity-label">
         Quantity
       </div>
-      <select id="quantity-dropdown">
+      <select id="det-quantity-dropdown">
         {quantities.map((quantity) => (
           <option key={quantity} value={quantity}>
             &nbsp;&nbsp;

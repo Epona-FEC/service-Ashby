@@ -9,7 +9,7 @@ function DetailsContainer({ detailsData }) {
     handmade, vintage, materials, dimensions, description,
   } = detailsData;
   return (
-    <div className="details-container">
+    <div className="det-details-container">
       {(!!handmade || !!vintage)
         && <StyleFlagsContainer handmade={handmade} vintage={vintage} />}
       <MaterialsContainer materials={materials} />

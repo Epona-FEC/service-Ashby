@@ -24,13 +24,20 @@
 ## Usage
 
 > Clone or fork and clone this repo.
+
 > From command line, npm install.
+
 > Make sure mysql is running.
+
 > This repo currently logs into mysql as user "root" with no password. This would need to be manually adjusted in the createDbAndTables and model files for different configuration.
+
 > From command line, npm run buildData.
+
 There is an occasional bug that causes the run to fail. If this happens, try again. Most attempts have no issue, but did once see three fails in a row.
+
 > The server is currently hardcoded to use localhost port 3002.
 All of the services and the proxy have hardcoded port numbers. Using these as-is is the best way to run everything together currently.
+
 > npm run jest will run unit tests on React components. Current tests validate that components can be created and children relationships with other major components.
 
 

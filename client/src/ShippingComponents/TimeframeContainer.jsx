@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function TimeframeContainer({ timeframe }) {
   return (
-    <div className="timeframe-container">
-      <div className="timeframe-label">Ready to Ship in</div>
+    <div className="det-timeframe-container">
+      <div className="det-timeframe-label">Ready to Ship in</div>
       <div>{timeframe}</div>
     </div>
   );

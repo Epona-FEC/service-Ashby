@@ -149,8 +149,8 @@ class ItemDetails extends React.Component {
       title, cost, options, details, shipping, policies,
     } = this.state;
     return (
-      <div className="item-details-container">
-        <h1 className="item-name">{title}</h1>
+      <div className="det-item-details-container">
+        <h1 className="det-item-name">{title}</h1>
         <CostContainer costData={cost} />
         <OptionsContainer optionsData={options} />
         <DetailsContainer detailsData={details} />

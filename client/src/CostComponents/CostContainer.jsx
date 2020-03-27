@@ -13,16 +13,16 @@ function CostContainer({ costData }) {
     priceDiff = (price - currPrice).toFixed(2);
   }
   return (
-    <div className="cost-container">
-      {!!bestseller && <div className="bestseller-flag">Bestseller</div>}
-      <div className="price-container">
-        <div className="current-price">
+    <div className="det-cost-container">
+      {!!bestseller && <div className="det-bestseller-flag">Bestseller</div>}
+      <div className="det-price-container">
+        <div className="det-current-price">
           $
           {currPrice}
         </div>
         {!!discount
           && (
-            <div className="original-price">
+            <div className="det-original-price">
               $
               {price.toFixed(2)}
               +

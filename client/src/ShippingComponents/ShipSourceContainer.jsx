@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function ShipSourceContainer({ country }) {
   return (
-    <div className="ship-source-container">
-      <div className="ship-source-label">From</div>
-      <div className="ship-source-location">{country}</div>
+    <div className="det-ship-source-container">
+      <div className="det-ship-source-label">From</div>
+      <div className="det-ship-source-location">{country}</div>
     </div>
   );
 }

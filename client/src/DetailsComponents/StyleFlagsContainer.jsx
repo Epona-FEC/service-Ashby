@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 function StyleFlagsContainer({ handmade, vintage }) {
   return (
-    <div className="style-flags-container">
+    <div className="det-style-flags-container">
       {!!handmade
-        && <div className="handmade-flag">Handmade</div>}
+        && <div className="det-handmade-flag">Handmade</div>}
       {!!vintage
-        && <div className="vintage-flag">Vintage</div>}
+        && <div className="det-vintage-flag">Vintage</div>}
     </div>
   );
 }

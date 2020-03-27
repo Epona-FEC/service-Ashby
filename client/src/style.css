@@ -1,4 +1,4 @@
-h1.item-name{
+h1.det-item-name{
   line-height: 32px;
   font-size: 26px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -9,7 +9,7 @@ h1.item-name{
   text-align: left;
 }
 
-.bestseller-flag {
+.det-bestseller-flag {
   background-color: #FDEBD2;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
@@ -21,37 +21,37 @@ h1.item-name{
   margin-bottom: 10px;
 }
 
-.cost-container {
+.det-cost-container {
   margin-bottom: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.price-container {
+.det-price-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 4px;
 }
 
-.current-price {
+.det-current-price {
   font-weight: 700;
   font-size: 25px;
   margin-right: 12px;
 }
 
-.original-price {
+.det-original-price {
   font-weight: 200;
   font-size: 14px;
   text-decoration: line-through;
 }
 
-.markdown-savings {
+.det-markdown-savings {
   font-weight: 200;
   font-size: 14px;
   color: #258635;
 }
 
-.markdown-sale-ending {
+.det-markdown-sale-ending {
   background-color: #9EC063;
   font-size: 12px;
   font-weight: 400;
@@ -62,16 +62,16 @@ h1.item-name{
   display: inline-block;
 }
 
-.options-container {
+.det-options-container {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 14px;
 }
 
-.choices-container {
+.det-choices-container {
   margin-bottom: 7px;
 }
 
-.choice-title {
+.det-choice-title {
   display: block;
   font-size: 14px;
   font-weight: 300;
@@ -81,34 +81,39 @@ h1.item-name{
 select {
   padding: 0px;
   font-size: 18px;
-  min-width: 200px;
+  min-width: 90%;
 }
 
-.personalization-label {
+.det-personalization-container {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.det-personalization-label {
   display: block;
   font-size: 14px;
   font-weight: 300;
   margin-bottom: 4px;
 }
 
-#personalization {
+.det-personalization-input {
   padding: 0px;
   font-size: 18px;
   min-width: 200px;
 }
 
-.quantity-container {
+.det-quantity-container {
   margin-bottom: 10px;
 }
 
-.quantity-label {
+.det-quantity-label {
   display: block;
   font-size: 14px;
   font-weight: 300;
   margin-bottom: 4px;
 }
 
-button.add-to-cart {
+button.det-add-to-cart {
   min-width: 200px;
   background-color: black;
   color: white;
@@ -118,7 +123,7 @@ button.add-to-cart {
   margin-bottom: 16px;
 }
 
-.selling-flag {
+.det-featue-image {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -127,7 +132,8 @@ button.add-to-cart {
   margin-bottom: 12px;
 }
 
-img {
-  width: 36px;
+img.det-selling-flag {
+  max-width: 36px;
+  max-height: 40px;
   padding-right: 12px;
 }
