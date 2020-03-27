@@ -7,8 +7,10 @@ import DetailsContainer from './DetailsComponents/DetailsContainer';
 import ShippingContainer from './ShippingComponents/ShippingContainer';
 import PoliciesContainer from './PoliciesComponents/PoliciesContainer';
 
+const serviceURL = 'http://localhost:3002';
+
 function getItem(itemId, callback) {
-  return axios.get(`/item/${itemId}`)
+  return axios.get(`${serviceURL}/item/${itemId}`)
     .then((response) => {
       callback(null, response);
     })
@@ -101,9 +103,9 @@ function getShippingData(data) {
 class ItemDetails extends React.Component {
   constructor(props) {
     super(props);
-    const { itemId } = this.props;
+    const { productId } = this.props;
     this.state = {
-      id: itemId,
+      id: productId,
       title: '',
       cost: {},
       options: {},
@@ -160,11 +162,11 @@ class ItemDetails extends React.Component {
 }
 
 ItemDetails.propTypes = {
-  itemId: PropTypes.number,
+  productId: PropTypes.number,
 };
 
 ItemDetails.defaultProps = {
-  itemId: 1,
+  productId: 1,
 };
 
 export default ItemDetails;

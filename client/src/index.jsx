@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import './style.css';
 import ItemDetails from './ItemDetails';
 
-const { itemID } = window;
+const { productId } = window;
 
-ReactDOM.render(<ItemDetails itemId={itemID} />, document.getElementById('app2'));
+ReactDOM.render(<ItemDetails productId={productId} />, document.getElementById('app2'));
 
 /*
 visual on ideas for component layout
