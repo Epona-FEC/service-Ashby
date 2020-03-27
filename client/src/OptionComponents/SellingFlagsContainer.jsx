@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// const serviceURL = 'http://localhost:3002/';
+
 function SellingFlagsContainer({
   inventory, inOtherCarts, shipType, freeShip,
 }) {
@@ -14,14 +16,14 @@ function SellingFlagsContainer({
       {!!digital
         && (
         <div className="selling-flag">
-          <img src="download.png" alt="digital download" />
+          <img src="http://localhost:3002/download.png" alt="digital download" />
           <div className="digital-download">digital download</div>
         </div>
         )}
       {!!freeShip
         && (
         <div className="selling-flag">
-          <img src="truck.png" alt="delivery truck" />
+          <img src="http://localhost:3002/truck.png" alt="delivery truck" />
           <div className="free-shipping">
             <strong>Hooray!</strong>
             &nbsp;This item ships free to the US.
@@ -31,7 +33,7 @@ function SellingFlagsContainer({
       {!!inventory
         && (
         <div className="selling-flag">
-          <img src="hourglass.png" alt="hourglass" />
+          <img src="http://localhost:3002/hourglass.png" alt="hourglass" />
           <div className="low-stock">
             <strong>Last Chance:</strong>
             &nbsp;
@@ -43,7 +45,7 @@ function SellingFlagsContainer({
       {!!inOtherCarts
         && (
         <div className="selling-flag">
-          <img src="cart.png" alt="shopping cart" />
+          <img src="http://localhost:3002/cart.png" alt="shopping cart" />
           <div className="other-carts">
             <strong>Hot item:</strong>
             &nbsp;
