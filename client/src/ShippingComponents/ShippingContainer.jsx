@@ -10,9 +10,19 @@ function ShippingFee({ shipType, freeShip }) {
     return null;
   }
   if (freeShip) {
-    return <div className="det-shipping-fee">Free</div>;
+    return (
+      <div>
+        <div className="det-ship-cost-label">Cost to ship</div>
+        <div className="det-shipping-fee">Free</div>
+      </div>
+    );
   }
-  return <div className="det-shipping-fee">$6.99</div>;
+  return (
+    <div>
+      <div className="det-ship-cost-label">Cost to ship</div>
+      <div className="det-shipping-fee">$6.99</div>
+    </div>
+  );
 }
 
 ShippingFee.propTypes = {
@@ -30,7 +40,6 @@ function ShippingContainer({ shippingData }) {
         <TimeframeContainer timeframe={timeframe} />
         <ShipSourceContainer country={country} state={state} city={city} />
       </div>
-      <div className="det-ship-cost-label">Cost to ship</div>
       <ShippingFee shipType={shipType} freeShip={freeShip} />
       {!freeShip
         && <button type="button" className="det-shipping-cost-button">Get Shipping Cost</button>}

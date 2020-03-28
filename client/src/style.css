@@ -177,6 +177,7 @@ img.det-selling-flag {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 24px;
+  margin-bottom: 16px;
 }
 
 .det-description-body {
@@ -245,10 +246,51 @@ img.det-selling-flag {
   background: none;
   border: none;
   font-size: 14px;
-  margin: 14px 14px 14px -6px;
+  margin-left: -12px;
+  padding: 9px 15px 9px 15px;
+}
+
+.det-shipping-cost-button:hover {
+  background-color: #f2f2f2;
+  border-radius: 15px;
 }
 
 .det-return-synopsis {
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+  margin-top: 26px;
+}
+
+/* .det-policies-container {
+  display: flex;
+  flex-direction: column;
+} */
+
+.det-hidden-button {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 14px;
+  margin-left: -12px;
+  padding: 9px 15px 9px 15px;
+}
+
+.det-hidden-button:hover {
+  background-color: #f2f2f2;
+  border-radius: 15px;
+}
+
+.det-faq-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-left: -12px;
+  padding: 9px 15px 9px 15px;
+}
+
+.det-faq-button:hover {
+  background-color: #f2f2f2;
+  border-radius: 15px;
 }

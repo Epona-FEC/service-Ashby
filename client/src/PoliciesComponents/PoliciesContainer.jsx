@@ -8,13 +8,13 @@ function PoliciesContainer({ policiesData }) {
   return (
     <div className="det-policies-container">
       {(policies !== '')
-        && <button type="button" className="det-shop-policies-button">View shop policies</button>}
+        && <button type="button" className="det-hidden-button">View shop policies</button>}
       {(returnsCondition !== '')
-        && <button type="button" className="det-shop-terms-button">View sale terms and conditions</button>}
+        && <button type="button" className="det-hidden-button">View sale terms and conditions</button>}
       {!!giftWrap
         && <div className="det-shop-giftwrap-label">Gift wrapping available</div>}
       {!!faqs
-        && <button type="button" className="det-faq-button">(FAQs - button just like shipping)</button>}
+        && <button type="button" className="det-faq-button">FAQs</button>}
     </div>
   );
 }
