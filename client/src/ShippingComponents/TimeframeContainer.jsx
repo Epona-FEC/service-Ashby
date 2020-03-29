@@ -11,7 +11,11 @@ function TimeframeContainer({ timeframe }) {
 }
 
 TimeframeContainer.propTypes = {
-  timeframe: PropTypes.string.isRequired,
+  timeframe: PropTypes.string,
+};
+
+TimeframeContainer.defaultProps = {
+  timeframe: '',
 };
 
 export default TimeframeContainer;

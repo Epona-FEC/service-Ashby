@@ -11,7 +11,11 @@ function ShipSourceContainer({ country }) {
 }
 
 ShipSourceContainer.propTypes = {
-  country: PropTypes.string.isRequired,
+  country: PropTypes.string,
+};
+
+ShipSourceContainer.defaultProps = {
+  country: '',
 };
 
 export default ShipSourceContainer;

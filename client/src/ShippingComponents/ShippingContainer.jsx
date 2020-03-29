@@ -26,8 +26,13 @@ function ShippingFee({ shipType, freeShip }) {
 }
 
 ShippingFee.propTypes = {
-  shipType: PropTypes.string.isRequired,
-  freeShip: PropTypes.number.isRequired,
+  shipType: PropTypes.string,
+  freeShip: PropTypes.number,
+};
+
+ShippingFee.defaultProps = {
+  shipType: '',
+  freeShip: 0,
 };
 
 function ShippingContainer({ shippingData }) {

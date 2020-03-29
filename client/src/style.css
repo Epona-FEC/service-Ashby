@@ -180,10 +180,41 @@ img.det-selling-flag {
   margin-bottom: 16px;
 }
 
+.det-min-size {
+  max-height: 80px;
+  overflow: hidden;
+  background: -webkit-linear-gradient(#333, #eee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.det-full-size {
+  max-height: none;
+}
+
 .det-description-body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 24px;
+}
+
+.det-description-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.det-description-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  padding: 9px 15px 9px 15px;
+  text-align: center;
+}
+
+.det-description-button:hover {
+  background-color: #f2f2f2;
+  border-radius: 15px;
 }
 
 .det-shipping-container {
